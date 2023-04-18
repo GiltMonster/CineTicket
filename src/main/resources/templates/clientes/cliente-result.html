@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>Informações do Cliente</title>
+</head>
+<body>
+<h1>Informações do Cliente</h1>
+
+<div th:if="${clienteSearch.isPresent()}">
+  <label th:text="${clienteSearch.get().getNome()}">Nome: </label>
+  <label th:text="${clienteSearch.get().getSobrenome()}">Nome: </label> </br>
+  <label th:text="${clienteSearch.get().getEmail}">Email: </label> </br>
+  <label th:text="${clienteSearch.get().getDataDeNascimento}">Data de Nascimento: </label> </br>
+  <label th:text="${clienteSearch.get().getTelefone}">Telegone: </label> </br>
+  <label th:text ="${clienteSearch.get().getEndereco}">Endereco: </label> </br>
+</div>
+
+<div th:if="${not clienteSearch.isPresent()}">
+  <p>Cliente não encontrado</p>
+</div>
+
+</body>
+</html>
