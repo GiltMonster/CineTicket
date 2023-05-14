@@ -1,30 +1,35 @@
 package br.senac.sp.projeto.cineticketoficial.view.rest;
 
-import br.senac.sp.projeto.cineticketoficial.controller.FilmeService;
-import br.senac.sp.projeto.cineticketoficial.model.entity.Filme;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import br.senac.sp.projeto.cineticketoficial.entity.Filme;
+import br.senac.sp.projeto.cineticketoficial.services.FilmeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/filmes")
 public class FilmeRestController {
-    private FilmeService service;
+    private final FilmeService service;
 
-    @Autowired
-    public FilmeRestController(FilmeService service) {
-        this.service = service;
+    @PostMapping
+    public Filme inserirFilme(@RequestBody Filme filme) {
+        return this.service.inserirFilme(filme);
     }
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Filme addCli(@RequestBody Filme filme) {
-        return this.service.add(filme);
+    @GetMapping
+    public List<Filme> buscarTodosFilmes() {
+        return this.service.buscarTodosFilmes();
     }
 
+    @DeleteMapping("/{idFilme}")
+    public Filme excluirFilme(@PathVariable("idFilme") Integer idFilme) {
+        return this.service.buscarFilmePorId(idFilme);
+    }
 
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Iterable<Filme> list() {
-        return this.service.list();
+    @GetMapping("/{idFilme}")
+    public Filme buscarFilmePorId(@PathVariable("idFilme") Integer idFilme) {
+        return this.service.buscarFilmePorId(idFilme);
     }
 }

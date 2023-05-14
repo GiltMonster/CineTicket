@@ -1,47 +1,55 @@
 package br.senac.sp.projeto.cineticketoficial.view.rest;
 
-import br.senac.sp.projeto.cineticketoficial.controller.AcessoService;
-import br.senac.sp.projeto.cineticketoficial.controller.ClienteService;
-import br.senac.sp.projeto.cineticketoficial.model.entity.Cliente;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import br.senac.sp.projeto.cineticketoficial.DTO.CadastroDTO;
+import br.senac.sp.projeto.cineticketoficial.entity.Cliente;
+import br.senac.sp.projeto.cineticketoficial.services.ClienteService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/clientes")
 public class ClienteRestController {
-    private ClienteService service;
-    private AcessoService acessoService;
+    private final ClienteService service;
 
-    @Autowired
-    public ClienteRestController(ClienteService service, AcessoService acessoService) {
-        this.service = service;
-        this.acessoService = acessoService;
+    @GetMapping("/test")
+    public CadastroDTO testCliente() {
+        CadastroDTO cadastroDTO = new CadastroDTO();
+        cadastroDTO.setEmail("yurimcf@gmail.com");
+        cadastroDTO.setNome("Yuri Mathaus");
+        cadastroDTO.setSobrenome("Cavalcante");
+        cadastroDTO.setDataNascimento(LocalDate.of(1998, 10, 31));
+        cadastroDTO.setTelefone("11995098635");
+        cadastroDTO.setEndereco("Rua Nova Brasília");
+        cadastroDTO.setSenha("1234");
+        return cadastroDTO;
     }
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Cliente addCli(@RequestBody Cliente cliente) {
-        return this.service.add(cliente);
+    //ok
+    @PostMapping
+    public Cliente adicionarCliente(@RequestBody CadastroDTO cadastroDTO) {
+        return this.service.inserirCliente(cadastroDTO);
+    }
+
+    //ok
+    @GetMapping
+    public List<Cliente> buscarTodosClientes() {
+        return this.service.buscarTodosClientes();
+    }
+
+    //ok
+    @DeleteMapping(value = "/{email}")
+    public Cliente excluirCliente(@PathVariable("email") String email) {
+        return this.service.excluirCliente(email);
+    }
+
+    @PutMapping(value = "/{email}")
+    public Cliente buscarClientePorEmail(@PathVariable("email") String email) {
+        return this.service.buscarClientePorEmail(email);
     }
 
 
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Iterable<Cliente> list() {
-        return this.service.list();
-    }
-
-    @GetMapping(value = "/{email}",
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Cliente delete(@PathVariable("email") String email) {
-        return this.service.delete(email);
-    }
-
-    @PutMapping(value = "/{email}",
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<Cliente> findByEmail(@PathVariable("email") String email) {
-        return this.service.getCliente(email);
-    }
 }

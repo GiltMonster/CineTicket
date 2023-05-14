@@ -1,30 +1,39 @@
 package br.senac.sp.projeto.cineticketoficial.view.rest;
 
-import br.senac.sp.projeto.cineticketoficial.controller.IngressoService;
-import br.senac.sp.projeto.cineticketoficial.model.entity.Ingresso;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import br.senac.sp.projeto.cineticketoficial.DTO.IngressoDTO;
+import br.senac.sp.projeto.cineticketoficial.entity.Ingresso;
+import br.senac.sp.projeto.cineticketoficial.services.IngressoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/ingressos")
 public class IngressoRestController {
-    private IngressoService service;
+    private final IngressoService service;
 
-    @Autowired
-    public IngressoRestController(IngressoService service) {
-        this.service = service;
+    @GetMapping("/test")
+    public IngressoDTO exemplo() {
+        IngressoDTO exemplo = new IngressoDTO();
+        exemplo.setCadeiras(new ArrayList<>());
+        return exemplo;
     }
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Ingresso addCli(@RequestBody Ingresso ingresso) {
-        return this.service.add(ingresso);
+    @PostMapping
+    public Ingresso criarIngresso(@RequestBody IngressoDTO ingressoDTO) {
+        return this.service.inserirIngresso(ingressoDTO);
     }
 
+    @GetMapping
+    public List<Ingresso> listarIngressos() {
+        return this.service.buscarTodosIngressos();
+    }
 
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Iterable<Ingresso> list() {
-        return this.service.list();
+    @DeleteMapping("/{idIngresso}")
+    public Ingresso excluirIngresso(@PathVariable("idIngresso") Integer idIngresso) {
+        return this.service.excluirIngresso(idIngresso);
     }
 }

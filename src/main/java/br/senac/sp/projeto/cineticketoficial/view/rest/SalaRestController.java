@@ -1,30 +1,30 @@
 package br.senac.sp.projeto.cineticketoficial.view.rest;
 
-import br.senac.sp.projeto.cineticketoficial.controller.SalaService;
-import br.senac.sp.projeto.cineticketoficial.model.entity.Sala;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import br.senac.sp.projeto.cineticketoficial.entity.Sala;
+import br.senac.sp.projeto.cineticketoficial.services.SalaService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/salas")
 public class SalaRestController {
-    private SalaService service;
+    private final SalaService service;
 
-    @Autowired
-    public SalaRestController(SalaService service) {
-        this.service = service;
+    @PostMapping
+    public Sala inserirSala(@RequestBody Sala sala) {
+        return this.service.inserirSala(sala);
     }
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Sala addCli(@RequestBody Sala sala) {
-        return this.service.add(sala);
+    @GetMapping()
+    public List<Sala> list() {
+        return this.service.buscarTodasSalas();
     }
 
-
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Iterable<Sala> list() {
-        return this.service.list();
+    @PutMapping("/{idSala}")
+    public Sala buscarSalaPorId(@PathVariable("idSala") String idSala) {
+        return this.service.buscarSalaPorId(idSala);
     }
 }

@@ -1,6 +1,5 @@
-package br.senac.sp.projeto.cineticketoficial.model;
+package br.senac.sp.projeto.cineticketoficial.entity;
 
-import br.senac.sp.projeto.cineticketoficial.model.entity.Acesso;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+// mexer depois
 @Component
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Getter
@@ -27,8 +27,8 @@ public class UserSession {
     }
 
     public boolean iniciarSession(Optional<Acesso> acesso) {
-        this.email= acesso.get().getEmailCliente();
-        this.senha = acesso.get().getEmailCliente();
+        this.email= acesso.get().getEmail();
+        this.senha = acesso.get().getEmail();
         return this.isLogado = true;
     }
 }

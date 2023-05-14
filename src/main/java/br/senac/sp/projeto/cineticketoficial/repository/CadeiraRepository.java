@@ -1,6 +1,6 @@
-package br.senac.sp.projeto.cineticketoficial.model.repository;
+package br.senac.sp.projeto.cineticketoficial.repository;
 
-import br.senac.sp.projeto.cineticketoficial.model.entity.Cadeira;
+import br.senac.sp.projeto.cineticketoficial.entity.Cadeira;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CadeiraRepository extends JpaRepository<Cadeira,Integer> {

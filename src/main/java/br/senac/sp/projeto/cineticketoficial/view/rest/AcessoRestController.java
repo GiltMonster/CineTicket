@@ -1,26 +1,26 @@
 package br.senac.sp.projeto.cineticketoficial.view.rest;
 
 
-import br.senac.sp.projeto.cineticketoficial.controller.AcessoService;
-import br.senac.sp.projeto.cineticketoficial.model.entity.Acesso;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import br.senac.sp.projeto.cineticketoficial.entity.Acesso;
+import br.senac.sp.projeto.cineticketoficial.services.AcessoService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/acessos")
 public class AcessoRestController {
-    private AcessoService service;
+    private final AcessoService service;
 
-    @Autowired
-    public AcessoRestController(AcessoService service) {
-        this.service = service;
+    @PostMapping("/atualizar")
+    public Acesso atualizarAcesso(@RequestBody Acesso acesso) {
+        return this.service.atualizarSenha(acesso);
     }
 
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Iterable<Acesso> list () {
-        return null;
+    @GetMapping
+    public List<Acesso> listarAcesso() {
+        return this.service.buscarTodosAcessos();
     }
 }

@@ -1,27 +1,20 @@
 package br.senac.sp.projeto.cineticketoficial.view.aplication;
 
-import br.senac.sp.projeto.cineticketoficial.controller.ClienteService;
-import br.senac.sp.projeto.cineticketoficial.model.entity.Acesso;
-import br.senac.sp.projeto.cineticketoficial.model.entity.Cliente;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.senac.sp.projeto.cineticketoficial.DTO.CadastroDTO;
+import br.senac.sp.projeto.cineticketoficial.entity.Cliente;
+import br.senac.sp.projeto.cineticketoficial.services.ClienteService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/app/clientes")
 public class ClienteAppController {
-    private ClienteService service;
+    private final ClienteService service;
 
-    @Autowired
-    public ClienteAppController(ClienteService service) {
-        this.service = service;
-    }
-
-//    @GetMapping("/search-cliente")
-    @GetMapping("/cadastro")
+    @GetMapping()
     public String registerCli(Model model) {
         model.addAttribute("cliente", new Cliente());
         return "clientes/cadastro";
@@ -29,17 +22,9 @@ public class ClienteAppController {
 
 
     @PostMapping("/cadastro")
-    public String register(@ModelAttribute Cliente cliente,
-                           @RequestParam("senha") String senha) {
-        try {
-            cliente.setAcesso(new Acesso());
-            cliente.getAcesso().setEmailCliente(cliente.getEmail());
-            cliente.getAcesso().setSenha(senha);
-            this.service.add(cliente);
-            return "redirect:/api/clientes";
-        } catch (Exception ex) {
-            return "redirect:/api/clientes";
-        }
+    public String formRegistro(@ModelAttribute CadastroDTO cadastroDTO) {
+        this.service.inserirCliente(cadastroDTO);
+        return "redirect:/api/clientes";
     }
 
     @GetMapping("/search-cliente")
@@ -51,9 +36,9 @@ public class ClienteAppController {
     @PostMapping("/search-cliente")
     public String findByEmail(@RequestParam("email") String email, Model model) {
         String result;
-        Optional<Cliente> cliente = this.service.getCliente(email);
-        if (cliente.isPresent()) {
-            model.addAttribute("clienteSearch", cliente);
+        Cliente cliente = this.service.buscarClientePorEmail(email);
+        if (cliente != null) {
+            model.addAttribute("cliente", cliente);
             result = "clientes/cliente-result.html";
         } else {
             result = "redirect:error.html";

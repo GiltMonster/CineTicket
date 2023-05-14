@@ -1,6 +1,6 @@
-package br.senac.sp.projeto.cineticketoficial.model.repository;
+package br.senac.sp.projeto.cineticketoficial.repository;
 
-import br.senac.sp.projeto.cineticketoficial.model.entity.Sessao;
+import br.senac.sp.projeto.cineticketoficial.entity.Sessao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

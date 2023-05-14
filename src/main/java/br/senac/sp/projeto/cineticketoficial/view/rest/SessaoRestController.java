@@ -1,31 +1,38 @@
 package br.senac.sp.projeto.cineticketoficial.view.rest;
 
 
-import br.senac.sp.projeto.cineticketoficial.controller.SessaoService;
-import br.senac.sp.projeto.cineticketoficial.model.entity.Sessao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import br.senac.sp.projeto.cineticketoficial.DTO.SessaoDTO;
+import br.senac.sp.projeto.cineticketoficial.entity.Sessao;
+import br.senac.sp.projeto.cineticketoficial.services.SessaoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/sessoes")
 public class SessaoRestController {
-    private SessaoService service;
+    private final SessaoService service;
 
-    @Autowired
-    public SessaoRestController(SessaoService service) {
-        this.service = service;
+    @GetMapping("/test")
+    public SessaoDTO exemploJSON() {
+
+        return new SessaoDTO();
     }
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Sessao addCli(@RequestBody Sessao sessao) {
-        return this.service.add(sessao);
+    @PostMapping
+    public Sessao inserirSessao(@RequestBody SessaoDTO sessaoDTO) {
+        return this.service.inserirSessao(sessaoDTO);
     }
 
+    @GetMapping
+    public List<Sessao> buscarTodasSessoes() {
+        return this.service.buscarTodasSessoes();
+    }
 
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Iterable<Sessao> list() {
-        return this.service.list();
+    @DeleteMapping("/{idSessao}")
+    public Sessao excluirSessoa(@PathVariable("idSessao") Integer idSessao) {
+        return this.service.excluirSessao(idSessao);
     }
 }
