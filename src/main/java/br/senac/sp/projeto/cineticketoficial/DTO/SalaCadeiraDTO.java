@@ -12,5 +12,7 @@ public class SalaCadeiraDTO {
     private Integer idCadeira;
     private boolean ocupado;
 
-
+    public boolean possuiAtributosNulos() {
+        return idSala == null || idCadeira == null;
+    }
 }

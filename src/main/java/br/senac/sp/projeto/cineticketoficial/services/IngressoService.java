@@ -4,6 +4,9 @@ import br.senac.sp.projeto.cineticketoficial.DTO.IngressoDTO;
 import br.senac.sp.projeto.cineticketoficial.DTO.SalaCadeiraDTO;
 import br.senac.sp.projeto.cineticketoficial.entity.Cadeira;
 import br.senac.sp.projeto.cineticketoficial.entity.Ingresso;
+import br.senac.sp.projeto.cineticketoficial.exceptions.IllegalArgumentException;
+import br.senac.sp.projeto.cineticketoficial.exceptions.NullAttributesException;
+import br.senac.sp.projeto.cineticketoficial.exceptions.ResourceNotFoundException;
 import br.senac.sp.projeto.cineticketoficial.repository.IngressoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,29 +25,38 @@ public class IngressoService {
     private final SalaCadeiraService salaCadeiraService;
 
     public Ingresso inserirIngresso(IngressoDTO ingressoDTO) {
+        if (ingressoDTO.possuiAtributosNulos()) {
+            throw new NullAttributesException();
+        }
+        Ingresso ingresso = criarIngressoAPartirDTO(ingressoDTO);
+        atualizarStatusCadeirasComIngressoDTO(ingressoDTO,ingresso);
+        return this.repository.save(ingresso);
+    }
+
+    private Ingresso criarIngressoAPartirDTO(IngressoDTO dto) {
         Ingresso ingresso = new Ingresso();
         ingresso.setDataCompra(LocalDate.now());
-        ingresso.setQuantidade(ingressoDTO.getQuantidade());
-        ingresso.setValorUnitario(ingressoDTO.getValorUnitario());
+        ingresso.setQuantidade( dto.getQuantidade());
+        ingresso.setValorUnitario(dto.getValorUnitario());
         ingresso.setValorTotal(
-                valorTotol(ingressoDTO.getQuantidade(), ingressoDTO.getValorUnitario()));
+                valorTotol(dto.getQuantidade(), dto.getValorUnitario()));
         ingresso.setCliente(
-                clienteService.buscarClientePorEmail(ingressoDTO.getEmailCliente()));
+                clienteService.buscarClientePorEmail(dto.getEmailCliente()));
         ingresso.setSessao(
-                sessaoService.buscarSessaoPorId(ingressoDTO.getIdSessao()));
+                sessaoService.buscarSessaoPorId(dto.getIdSessao()));
+        return ingresso;
+    }
 
-        //refatorar isso
-        List<Cadeira> cadeiras = ingressoDTO.getCadeiras();
-        List<SalaCadeiraDTO> salaCadeiraDTOS = new ArrayList();
-        for (Cadeira cadeira : cadeiras){
+    private void atualizarStatusCadeirasComIngressoDTO(IngressoDTO dto, Ingresso ingresso) {
+        List<Cadeira> cadeiras = dto.getCadeiras();
+        List<SalaCadeiraDTO> salaCadeiraDTOS = new ArrayList<>();
+        for (Cadeira cadeira : cadeiras) {
             SalaCadeiraDTO salaCadeiraDTO = new SalaCadeiraDTO();
             salaCadeiraDTO.setIdCadeira(cadeira.getIdCadeira());
             salaCadeiraDTO.setIdSala(ingresso.getSessao().getSala().getIdSala());
             salaCadeiraDTOS.add(salaCadeiraDTO);
         }
         this.salaCadeiraService.atualizarStatusCadeiras(salaCadeiraDTOS);
-
-        return this.repository.save(ingresso);
     }
 
 
@@ -53,11 +65,18 @@ public class IngressoService {
     }
 
     public List<Ingresso> buscarTodosIngressos() {
-        return this.repository.findAll();
+        List<Ingresso> ingressos = this.repository.findAll();
+        if (ingressos.isEmpty()) {
+            throw new ResourceNotFoundException();
+        }
+        return ingressos;
     }
 
     public Ingresso buscarIngressoPorId(Integer id) {
-        return this.repository.findById(id).orElseThrow();
+        if (id == null) {
+            throw new IllegalArgumentException("Campo 'id' não pode ser nulo e aceita valores numéricos somente");
+        }
+        return this.repository.findById(id).orElseThrow(ResourceNotFoundException::new);
     }
 
     public Ingresso excluirIngresso(Integer id) {

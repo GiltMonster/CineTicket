@@ -5,6 +5,8 @@ import br.senac.sp.projeto.cineticketoficial.entity.Cadeira;
 import br.senac.sp.projeto.cineticketoficial.entity.Sala;
 import br.senac.sp.projeto.cineticketoficial.entity.SalaCadeira;
 import br.senac.sp.projeto.cineticketoficial.entity.SalaCadeiraPK;
+import br.senac.sp.projeto.cineticketoficial.exceptions.NullAttributesException;
+import br.senac.sp.projeto.cineticketoficial.exceptions.ResourceNotFoundException;
 import br.senac.sp.projeto.cineticketoficial.repository.SalaCadeiraRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,9 @@ public class SalaCadeiraService {
 
 
     public SalaCadeira inserirEAtualizarSalaCadeira(SalaCadeiraDTO salaCadeiraDTO) {
+        if (salaCadeiraDTO.possuiAtributosNulos()){
+            throw new NullAttributesException();
+        }
         SalaCadeira salaCadeira = criarSalaCadeiraAPartirDTO(salaCadeiraDTO);
         return this.repository.save(salaCadeira);
     }
@@ -43,17 +48,21 @@ public class SalaCadeiraService {
     }
 
     public List<SalaCadeira> listarTodasSalaCadeiras() {
-        return this.repository.findAll();
+        List<SalaCadeira> cadeiras = this.repository.findAll();
+        if (cadeiras.isEmpty()){
+            throw new ResourceNotFoundException();
+        }
+        return cadeiras;
     }
 
     public void atualizarStatusCadeiras(List<SalaCadeiraDTO> cadeirasOcupadas) {
-        List<SalaCadeira> cadeirasUsadas = new ArrayList<>();
+        List<SalaCadeira> cadeirasEmUso = new ArrayList<>();
         for (SalaCadeiraDTO dto : cadeirasOcupadas) {
             SalaCadeira cadeiraUsada = inserirEAtualizarSalaCadeira(dto);
             cadeiraUsada.setOcupado(true);
-            cadeirasUsadas.add(cadeiraUsada);
+            cadeirasEmUso.add(cadeiraUsada);
         }
-        this.repository.saveAll(cadeirasUsadas);
+        this.repository.saveAll(cadeirasEmUso);
     }
 
 }

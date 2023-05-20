@@ -43,7 +43,7 @@ public class ClienteRestController {
     //ok
     @DeleteMapping(value = "/{email}")
     public Cliente excluirCliente(@PathVariable("email") String email) {
-        return this.service.excluirCliente(email);
+        return this.service.deletarCliente(email);
     }
 
     @PutMapping(value = "/{email}")

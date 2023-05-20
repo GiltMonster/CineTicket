@@ -31,7 +31,7 @@ public class Ingresso implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "quantidade")
-    private int quantidade;
+    private Integer quantidade;
 
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)

@@ -56,7 +56,7 @@ public class Cliente implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente", fetch = FetchType.EAGER)
     private Acesso acesso;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "emailCliente", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente", fetch = FetchType.EAGER)
     private List<Ingresso> ingressoList;
 
 }

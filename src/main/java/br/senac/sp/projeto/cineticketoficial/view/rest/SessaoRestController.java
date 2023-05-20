@@ -33,6 +33,6 @@ public class SessaoRestController {
 
     @DeleteMapping("/{idSessao}")
     public Sessao excluirSessoa(@PathVariable("idSessao") Integer idSessao) {
-        return this.service.excluirSessao(idSessao);
+        return this.service.deleteSessao(idSessao);
     }
 }

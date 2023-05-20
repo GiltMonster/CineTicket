@@ -17,4 +17,13 @@ public class CadastroDTO {
     private String telefone;
     private String endereco;
     private String senha;
+
+    public boolean possuiAtributosNulos() {
+        return email == null ||
+                nome == null ||
+                dataNascimento == null ||
+                telefone == null ||
+                endereco == null ||
+                senha == null;
+    }
 }

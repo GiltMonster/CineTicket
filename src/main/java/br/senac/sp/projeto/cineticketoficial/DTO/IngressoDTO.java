@@ -12,9 +12,17 @@ import java.util.List;
 @Setter
 @RequiredArgsConstructor
 public class IngressoDTO {
-    private int quantidade;
+    private Integer quantidade;
     private List<Cadeira> cadeiras;
     private BigDecimal valorUnitario;
     private String emailCliente;
     private Integer idSessao;
+
+    public boolean possuiAtributosNulos() {
+        return quantidade == null ||
+                cadeiras.isEmpty() ||
+                valorUnitario == null ||
+                emailCliente == null ||
+                idSessao == null;
+    }
 }

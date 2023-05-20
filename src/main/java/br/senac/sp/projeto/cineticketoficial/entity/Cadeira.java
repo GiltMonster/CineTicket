@@ -30,4 +30,8 @@ public class Cadeira implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cadeira", fetch = FetchType.EAGER)
     private List<SalaCadeira> salaCadeiraList;
+
+    public Cadeira(Integer idCadeira) {
+        this.idCadeira = idCadeira;
+    }
 }
