@@ -1,0 +1,79 @@
+.container {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.movie-container {
+    display: flex;
+    transition: transform 0.5s;
+}
+
+.movie {
+    flex: 0 0 550px;
+    width: 100%;
+    margin-right: 10px;
+    vertical-align: top;
+    position: relative;
+}
+
+.movie a {
+    text-decoration: none;
+}
+
+.movie img {
+    width: 100%;
+    height: auto;
+}
+
+.movie .title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 98%;
+    height: 5, 5%;
+    padding: 5px;
+    margin: 0;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, .85) 100%);
+    text-align: center;
+    transition: background-color 0.3s;
+    border-top-right-radius: 25%;
+    border-top-left-radius: 25%;
+}
+
+.movie:hover .title {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, .5);
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.scroll-button:hover{
+    background-color: black;
+}
+
+.scroll-button-left {
+    left: 0;
+}
+
+.scroll-button-right {
+    right: 0;
+}
+

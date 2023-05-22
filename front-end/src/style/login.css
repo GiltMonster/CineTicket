@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+form {
+    background-color: #fff;
+    padding: 20px;
+    margin: 50px auto;
+    max-width: 50%;
+}
+label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: justify;
+}
+input[type="text"], input[type="password"] {
+    display: block;
+    width: 97%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+input[type="submit"] {
+    background-color: #b1b1b1;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+}
+input[type="submit"]:hover {
+    background-color: #3e8e41;
+}
+.links {
+    text-align: center;
+    margin-top: 10px;
+}
+a {
+    color: #666;
+    text-decoration: none;
+}
+a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+p {
+    text-align: center;
+}
+.esqueceu {
+    display: block;
+    text-align: justify;
+}

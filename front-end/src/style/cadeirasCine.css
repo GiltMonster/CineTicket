@@ -1,0 +1,86 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    width: 700px;
+    height: 700px;
+}
+
+.seats {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 690px;
+    height: auto;
+}
+
+.seat {
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+    background-color: #ccc;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.seat:hover {
+    background-color: slategrey;
+}
+
+.seat.space {
+    margin-right: 112px;
+}
+
+.screen {
+    width: 98%;
+    height: 30px;
+    background-color: #333;
+    margin-top: 50px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.seat.selected {
+    background-color: #28a745;
+}
+
+.seat.occupied {
+    background-color: #dc3545;
+    cursor: not-allowed;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.legend-item .seat {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.legend-item span {
+    font-size: 14px;
+}
+
+.available:hover {
+    background-color: #ccc;
+}
