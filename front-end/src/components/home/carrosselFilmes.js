@@ -1,53 +1,56 @@
 import React, { useEffect, useRef } from "react";
 import "../../style/carrosselFilmes.css";
+import Loading from "../loading";
 
-export default function CarrosselFilmes() {
+export default function CarrosselFilmes(filmes) {
   const movieContainerRef = useRef(null);
   const movieWidthRef = useRef(0);
   let currentIndex = 0;
   let interval = null;
 
-  useEffect(() => {
-    const carousel = document.querySelector(".carousel");
-    const movies = document.querySelectorAll(".movie");
-    const movieContainer = movieContainerRef.current;
-    movieWidthRef.current = movies[0].offsetWidth;
+  const carousel = document.querySelector(".carousel");
+  const movies = document.querySelectorAll(".movie");
+  const movieContainer = movieContainerRef.current;
+  movieWidthRef.current = movies[0].offsetWidth;
 
-    function nextSlide() {
-      currentIndex++;
-      if (currentIndex >= movies.length - 2) {
-        // Reinicie o carrossel no final
-        currentIndex = 0;
-      }
-
-      const translateXValue = -currentIndex * movieWidthRef.current;
-      movieContainer.style.transform = `translateX(${translateXValue}px)`;
+  function nextSlide() {
+    currentIndex++;
+    if (currentIndex >= movies.length - 2) {
+      // Reinicie o carrossel no final
+      currentIndex = 0;
     }
 
-    // Inicie o carrossel automaticamente
-    interval = setInterval(nextSlide, 5000);
+    const translateXValue = -currentIndex * movieWidthRef.current;
+    movieContainer.style.transform = `translateX(${translateXValue}px)`;
+  }
 
-    // Pausar o carrossel quando o mouse estiver sobre ele
-    carousel.addEventListener("mouseover", () => {
+  // Inicie o carrossel automaticamente
+  interval = setInterval(nextSlide, 5000);
+
+  // Pausar o carrossel quando o mouse estiver sobre ele
+  carousel.addEventListener("mouseover", () => {
+    clearInterval(interval);
+  });
+
+  // Retomar o carrossel quando o mouse sair
+  carousel.addEventListener("mouseout", () => {
+    interval = setInterval(nextSlide, 5000);
+  });
+
+  // Pausar o carrossel quando o mouse estiver sobre um dos botões
+  const scrollButtons = document.querySelectorAll(".scroll-button");
+  scrollButtons.forEach((button) => {
+    button.addEventListener("mouseover", () => {
       clearInterval(interval);
     });
 
-    // Retomar o carrossel quando o mouse sair
-    carousel.addEventListener("mouseout", () => {
+    button.addEventListener("mouseout", () => {
       interval = setInterval(nextSlide, 5000);
     });
+  });
+  useEffect(() => {
 
-    // Pausar o carrossel quando o mouse estiver sobre um dos botões
-    const scrollButtons = document.querySelectorAll(".scroll-button");
-    scrollButtons.forEach((button) => {
-      button.addEventListener("mouseover", () => {
-        clearInterval(interval);
-      });
-
-      button.addEventListener("mouseout", () => {
-        interval = setInterval(nextSlide, 5000);
-      });
-    });
+    console.log(filmes)
 
     return () => {
       clearInterval(interval);
@@ -79,6 +82,8 @@ export default function CarrosselFilmes() {
   };
 
   return (
+
+  filmes ?    
     <div className="container">
       <div className="carousel">
         <div className="movie-container" ref={movieContainerRef}>
@@ -146,5 +151,9 @@ export default function CarrosselFilmes() {
         &gt;
       </button>
     </div>
+
+       :
+
+    <Loading/>
   );
 }
