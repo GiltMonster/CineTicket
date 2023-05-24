@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { keyV4 } from "../apiKeys";
+import { keyV3, keyV4 } from "../apiKeys";
+import Banner from "../components/filmes/Banner";
+import TrailerSinopse from "../components/filmes/TrailerSinopse";
+import { ContextFilm } from "../context/filmeContext";
+import Loading from "../components/loading";
 
 export default function Filme() {
 
@@ -10,14 +14,14 @@ export default function Filme() {
     const [filme, setFilme] = useState({});
 
     function carregarFilmes() {
+
         const options = {
             method: 'GET',
-            url: `https://api.themoviedb.org/3/movie/${filmeId}`,
+            url: `https://api.themoviedb.org/3/movie/${filmeId}?api_key=${keyV3}&append_to_response=videos,images`,
             params: {
                 include_adult: 'false',
                 include_video: 'true',
                 language: 'pt-BR',
-                page: '1',
                 sort_by: 'popularity.desc'
             },
             headers: {
@@ -25,26 +29,38 @@ export default function Filme() {
                 Authorization: `Bearer ${keyV4}`
             }
         };
-    
+
         axios
             .request(options)
             .then(function (response) {
                 setFilme(response.data);
                 console.log(response.data);
-                
+
             })
             .catch(function (error) {
                 console.error(error);
             });
-    
+
     }
- 
-    useEffect(()=>{
+
+    useEffect(() => {
         carregarFilmes();
         console.log(filme)
     }, []);
 
-    return(
-        <h1>Filme AQUI</h1>
-    )    
+    return (
+
+        filme ?
+
+        <>
+            <ContextFilm.Provider value={filme}>
+                <Banner/>
+                <TrailerSinopse/>
+            </ContextFilm.Provider>
+        </>
+
+        :
+
+        <Loading/>
+    )
 }
