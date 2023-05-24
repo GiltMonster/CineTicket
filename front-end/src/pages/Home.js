@@ -28,7 +28,7 @@ export default function Home() {
         axios
             .request(options)
             .then(function (response) {
-                setFilmes(response.data);
+                setFilmes(response.data.results);
             })
             .catch(function (error) {
                 console.error(error);
