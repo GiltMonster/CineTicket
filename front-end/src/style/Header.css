@@ -17,29 +17,26 @@ header {
   display: flex;
   align-items: center;
   position: relative;
-  width: 60%;
+  width: 40%;
   height: auto;
 }
 
-.search-box input[type="text"] {
+#pesquisa{
   border-radius: 3px;
   border: none;
   margin: 0% 0%;
-  
+  box-sizing: 50%;
   }
 
 .search-icon {
-  font-size: 3em;
-  margin: 0% 0% 0% 5%;
+  font-size: 1.5em;
+  margin: 0% 1% 0% 0%;
 }
 
 .login{
+  margin:  0px 5px 0px 0px;
   height: auto;
   color: #fff;
   text-decoration: none;
   font-size: 3em;
-}
-
-.user-icon svg{
-  margin: 5px;
 }

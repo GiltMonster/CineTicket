@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { keyV3 } from "../../apiKeys";
 import "../../style/Header.css";
-import { AiOutlineSearch } from "react-icons/ai";
+import { FaSearch } from "react-icons/fa";
 
 export default function PesquisaFilmes() {
 
@@ -24,8 +24,8 @@ export default function PesquisaFilmes() {
 
     return (
         <>
+            <Link className="search-icon" to={`/filme/${filme?.id}`} onClick={buscarFilme}><FaSearch/></Link>
             <input type="text" id="pesquisa" placeholder="Pesquisar:" ref={nomeFilme} />
-            <Link className="search-icon" to={`/filme/${filme?.id}`} onClick={buscarFilme}><AiOutlineSearch/></Link>
         </>
 
     )

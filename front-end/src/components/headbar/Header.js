@@ -10,10 +10,10 @@ export default function Header() {
     return (
         <header>
             <div className="logo">
-                <img src="cinema_logo.png" alt="Logo do Cinema"/>
+                <Link to={"/"}>HOME</Link>
+                {/* <img src="cinema_logo.png" alt="Logo do Cinema"/> */}
             </div>
             <div className="search-box">
-                
                 <PesquisaFilmes/>
                 <Link to={""}><faSearch/></Link>
             </div>
