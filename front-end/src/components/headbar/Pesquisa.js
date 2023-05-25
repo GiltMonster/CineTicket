@@ -1,31 +1,18 @@
-import axios from "axios";
-import { useRef, useState } from "react";
+import { useState} from "react";
 import { Link } from "react-router-dom";
-import { keyV3 } from "../../apiKeys";
-import "../../style/Header.css";
 import { FaSearch } from "react-icons/fa";
+import "../../style/Header.css";
 
 export default function PesquisaFilmes() {
 
-    let urlFilme = `https://api.themoviedb.org/3/search/movie?api_key=${keyV3}&language=pt-BR&append_to_response=videos,images&query=`;
-
-    const nomeFilme = useRef({});
-    const [filme, setFilme] = useState();
-
-    function buscarFilme() {
-        axios.get(urlFilme + nomeFilme.current.value)
-            .then((resp) => {
-                console.log(resp.data.results)
-                setFilme(resp.data);
-            }).catch((error) => {
-                console.error(error);
-            })
-    }
+    const [pesquisa, setPesquisa] = useState()
+    
+    
 
     return (
         <>
-            <Link className="search-icon" to={`/filme/${filme?.id}`} onClick={buscarFilme}><FaSearch/></Link>
-            <input type="text" id="pesquisa" placeholder="Pesquisar:" ref={nomeFilme} />
+            <Link className="search-icon" to={`/pesquisarFilme/${pesquisa}`}><FaSearch/></Link>
+            <input type="text" id="pesquisa" placeholder="Pesquisar:" onChange={(e) => setPesquisa(e.target.value)}/>
         </>
 
     )

@@ -3,7 +3,7 @@ import React from "react";
 // import { faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 import "../../style/Header.css";
 import PesquisaFilmes from "./Pesquisa";
-import{ faSearch, FaUserCircle } from "react-icons/fa"
+import{FaUserCircle } from "react-icons/fa"
 import { Link } from "react-router-dom";
 
 export default function Header() {
@@ -15,7 +15,6 @@ export default function Header() {
             </div>
             <div className="search-box">
                 <PesquisaFilmes/>
-                <Link to={""}><faSearch/></Link>
             </div>
             <div className="login">
                 <Link to={"/login"}><FaUserCircle/></Link>
