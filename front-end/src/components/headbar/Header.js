@@ -2,7 +2,9 @@ import React from "react";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 import "../../style/Header.css";
-
+import PesquisaFilmes from "./Pesquisa";
+import{ faSearch, FaUserCircle } from "react-icons/fa"
+import { Link } from "react-router-dom";
 
 export default function Header() {
     return (
@@ -11,12 +13,12 @@ export default function Header() {
                 <img src="cinema_logo.png" alt="Logo do Cinema"/>
             </div>
             <div className="search-box">
-                {/* <FontAwesomeIcon icon={faSearch} className="search-icon" /> */}
-                <input type="text" placeholder="Buscar"/>
+                
+                <PesquisaFilmes/>
+                <Link to={""}><faSearch/></Link>
             </div>
             <div className="login">
-                {/* <FontAwesomeIcon icon={faUser} className="user-icon"/> */}
-                <a href="#">Login</a>
+                <Link to={"/login"}><FaUserCircle/></Link>
             </div>
         </header>
     );

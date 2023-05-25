@@ -17,26 +17,29 @@ header {
   display: flex;
   align-items: center;
   position: relative;
+  width: 60%;
+  height: auto;
 }
 
 .search-box input[type="text"] {
-  padding: 5px;
   border-radius: 3px;
   border: none;
-  margin-top: 17px;
-}
+  margin: 0% 0%;
+  
+  }
 
 .search-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
+  font-size: 3em;
+  margin: 0% 0% 0% 5%;
 }
 
-.login a {
+.login{
+  height: auto;
   color: #fff;
   text-decoration: none;
+  font-size: 3em;
 }
 
-.user-icon{
-  margin-right: 5px;
+.user-icon svg{
+  margin: 5px;
 }
