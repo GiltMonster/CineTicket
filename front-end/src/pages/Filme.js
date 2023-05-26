@@ -55,7 +55,6 @@ export default function Filme() {
         <>
             <ContextFilm.Provider value={filme}>
                 <Banner/>
-                <TrailerSinopse/>
             </ContextFilm.Provider>
         </>
 

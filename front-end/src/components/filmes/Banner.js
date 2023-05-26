@@ -2,18 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 import "../../style/Banner.css";
 import { ContextFilm } from "../../context/filmeContext";
 import Loading from "../loading";
+import TrailerSinopse from "./TrailerSinopse";
 
 export default function Banner() {
-
   const filme = useContext(ContextFilm);
-
   const [colorRating, setColorRating] = useState();
   const [ageRating, setAgeRating] = useState(18);
-  
+
   const genres = ["Ação", "Aventura", "Comédia"];
 
   // Função para mapear a idade para a cor correspondente
-  function getAgeRatingColor(age){
+  function getAgeRatingColor(age) {
     if (age >= 18) {
       return "#000000";
     } else if (age >= 16) {
@@ -27,17 +26,17 @@ export default function Banner() {
     } else {
       return "#008000";
     }
-  };
+  }
 
-  useEffect(()=>{
+  useEffect(() => {
     setColorRating(getAgeRatingColor(ageRating));
+  }, []);
 
-  },[]);
-
-
-  return (
-    filme ?
+  return filme ? (
     <div className="movie-banner">
+      <div className="trailer-sinopse">
+        <TrailerSinopse />
+      </div>
       <div className="movie-info">
         <h1>{filme.title}</h1>
         <div className="genres">
@@ -52,20 +51,19 @@ export default function Banner() {
         </div>
       </div>
       <img
-        src={`https://image.tmdb.org/t/p/original/${filme.backdrop_path}`} alt={`Banner do Filme: ${filme.title}`}
+        src={`https://image.tmdb.org/t/p/original/${filme.backdrop_path}`}
+        alt={`Banner do Filme: ${filme.title}`}
         className="banner-image"
       />
       <div className="movie-poster">
         <img
-          src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`} alt={`Imagem do filme: ${filme.title}`}
+          src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`}
+          alt={`Imagem do filme: ${filme.title}`}
           className="poster-image"
         />
       </div>
     </div>
-
-    :
-
-    <Loading/>
-    
+  ) : (
+    <Loading />
   );
 }
