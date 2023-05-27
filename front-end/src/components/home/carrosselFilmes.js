@@ -59,7 +59,7 @@ export default function CarrosselFilmes(filmes) {
   const scrollLeft = () => {
     const movieContainer = movieContainerRef.current;
     currentIndex--;
-    if (currentIndex = 0) {
+    if (currentIndex < 0) {
       currentIndex = 0;
     }
 
@@ -70,7 +70,7 @@ export default function CarrosselFilmes(filmes) {
   const scrollRight = () => {
     const movieContainer = movieContainerRef.current;
     const containerWidth = movieContainer.offsetWidth;
-    const moviesWidth = (movieWidthRef.current + 10) * (movieContainer.children.length - 1);
+    const moviesWidth = (movieWidthRef.current + 10) * (movieContainer.children.length);
   
     const maxScroll = moviesWidth - containerWidth;
     let scrollAmount = currentIndex * (movieWidthRef.current + 10);
