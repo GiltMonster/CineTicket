@@ -60,7 +60,6 @@ export default function CarrosselFilmes(filmes) {
     const movieContainer = movieContainerRef.current;
     currentIndex--;
     if (currentIndex = 0) {
-      // Voltar para o último filme
       currentIndex = 0;
     }
 
@@ -70,16 +69,20 @@ export default function CarrosselFilmes(filmes) {
 
   const scrollRight = () => {
     const movieContainer = movieContainerRef.current;
-    currentIndex++;
-    if (currentIndex >= movieContainer.children.length - 3) {
-      // Reiniciar o carrossel no início
-      currentIndex = movieContainer.children.length - 3;
+    const containerWidth = movieContainer.offsetWidth;
+    const moviesWidth = (movieWidthRef.current + 10) * (movieContainer.children.length - 1);
+  
+    const maxScroll = moviesWidth - containerWidth;
+    let scrollAmount = currentIndex * (movieWidthRef.current + 10);
+    scrollAmount += movieWidthRef.current + 10;
+  
+    if (scrollAmount > maxScroll) {
+      scrollAmount = maxScroll;
     }
-
-    const translateXValue = -currentIndex * movieWidthRef.current;
-    movieContainer.style.transform = `translateX(${translateXValue}px)`;
+  
+    movieContainer.style.transform = `translateX(-${scrollAmount}px)`;
+    currentIndex = Math.floor(scrollAmount / (movieWidthRef.current + 10));
   };
-
 
   return (
 

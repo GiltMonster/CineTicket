@@ -6,7 +6,7 @@ export default function Login() {
         <div className="Login">
             <form>
                 <label for="login">Login:</label>
-                <input type="text" id="username" name="username" placeholder="E-mail" required />
+                <input type="email" id="username" name="username" placeholder="E-mail" required />
                 <input type="password" id="password" name="password" placeholder="Senha" required />
                 <Link href="#" class="esqueceu">Esqueceu sua senha?</Link>
                 <p>
