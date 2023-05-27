@@ -28,12 +28,31 @@
     margin: 5px 0;
 }
 
-.movie-item.hovered img {
+.movie-item :hover img {
     transform: scale(1.1);
     transition: transform 0.3s ease-in-out;
 }
 
-.movie-item.hovered h3 {
+.movie-item :hover h3 {
     transform: translateY(10px);
     transition: transform 0.3s ease-in-out;
+}
+
+.title{
+    display: flex;
+    align-items: baseline;
+    font-size: 2.5em;
+}
+
+
+.title h1{
+    margin-left: 3%;
+    color: #333;
+    
+}
+
+.title h3{
+    margin-left: 1%;
+    color: #e57926;
+    text-decoration: underline #afafaf;
 }

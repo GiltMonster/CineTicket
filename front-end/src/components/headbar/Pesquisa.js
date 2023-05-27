@@ -11,7 +11,7 @@ export default function PesquisaFilmes() {
 
     return (
         <>
-            <Link className="search-icon" to={`/pesquisarFilme/${pesquisa}`}><FaSearch/></Link>
+            <Link reloadDocument className="search-icon" to={`/pesquisarFilme/${pesquisa}`}><FaSearch/></Link>
             <input type="text" id="pesquisa" placeholder="Pesquisar:" onChange={(e) => setPesquisa(e.target.value)}/>
         </>
 

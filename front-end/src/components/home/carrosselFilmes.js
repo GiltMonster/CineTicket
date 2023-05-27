@@ -80,37 +80,54 @@ export default function CarrosselFilmes(filmes) {
     movieContainer.style.transform = `translateX(${translateXValue}px)`;
   };
 
-  
+
   return (
+
+    <>
+
+<div className="title">
+    <h1>Filmes de pesquisa populares:</h1>
+
+</div>
+
     
-    filmes ?
-    <div className="container">
-        <div className="carousel">
-          <div className="movie-container" ref={movieContainerRef}>
-            {
-              
-              filmes.filme.map(filme => {
-              return( 
-                <div className="movie" key={filme.id}>
-                    <Link to={`/filme/${filme.id}`}>
-                      <img src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`} alt={`Imagem do filme: ${filme.title}`} />
-                      <h2 className="title">{filme.title}</h2>
-                    </Link>
-                  </div>
-              )})
-            }
+      {
+
+
+        filmes ?
+
+
+          <div className="container">
+            <div className="carousel">
+              <div className="movie-container" ref={movieContainerRef}>
+                {
+
+                  filmes.filme.map(filme => {
+                    return (
+                      <div className="movie" key={filme.id}>
+                        <Link to={`/filme/${filme.id}`}>
+                          <img src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`} alt={`Imagem do filme: ${filme.title}`} />
+                          <h2 className="title">{filme.title}</h2>
+                        </Link>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            </div>
+            <button className="scroll-button scroll-button-left" onClick={scrollLeft}>
+              &lt;
+            </button>
+            <button className="scroll-button scroll-button-right" onClick={scrollRight}>
+              &gt;
+            </button>
           </div>
-        </div>
-        <button className="scroll-button scroll-button-left" onClick={scrollLeft}>
-        &lt;
-      </button>
-      <button className="scroll-button scroll-button-right" onClick={scrollRight}>
-        &gt;
-      </button>
-      </div>
 
-      :
+          :
 
-      <Loading />
+          <Loading />
+
+      }
+    </>
   );
 }

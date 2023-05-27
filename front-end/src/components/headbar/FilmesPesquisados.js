@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import '../../style/FilmesPesquisados.css';
-import { keyV3, keyV4 } from '../../apiKeys';
+import { keyV4 } from '../../apiKeys';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import Loading from '../loading';
 
 export default function FilmesPesquisados() {
 
+    const [pesquisa, setPesquisa] = useState();
     const [filme, setFilme] = useState();
 
     let { nomeFilme } = useParams();
@@ -31,7 +33,7 @@ export default function FilmesPesquisados() {
         axios
             .request(options)
             .then(function (response) {
-                setFilme(response.data.results)
+                setFilme(response.data.results);
             })
             .catch(function (error) {
                 console.error(error);
@@ -40,51 +42,43 @@ export default function FilmesPesquisados() {
     }
 
     useEffect(() => {
+
+        setPesquisa(nomeFilme);
         buscarFilme();
-        filmes();
+
     }, []);
 
 
-    function filmes() {
-        
-        const moviesGrid = document.getElementById('movies-grid');
-
-        if (filme) {
-
-            filme.map(movie => {
-                const movieItem = document.createElement('a');
-                movieItem.classList.add('movie-item');
-                movieItem.href = movie?.link;
-
-                const movieImage = document.createElement('img');
-                movieImage.src = `https://image.tmdb.org/t/p/original/${movie?.poster_path}`;
-                movieImage.alt = movie?.title;
-
-                const movieTitle = document.createElement('h3');
-                movieTitle.textContent = movie?.title;
-
-                movieItem.appendChild(movieImage);
-                movieItem.appendChild(movieTitle);
-
-                // Adicionar e remover classe no hover
-                movieItem.addEventListener('mouseenter', () => {
-                    movieItem.classList.add('hovered');
-                });
-
-                movieItem.addEventListener('mouseleave', () => {
-                    movieItem.classList.remove('hovered');
-                });
-
-                moviesGrid.appendChild(movieItem);
-            });
-        } else {
-            buscarFilme();
-
-        }
-
-    }
-
     return (
-        <div id="movies-grid" className="movies-grid"></div>
+
+        <>
+
+            <div  className='title'>
+                <h1>Resultados da sua pesquisa:</h1>
+                <h3>{pesquisa}</h3> 
+            </div>
+
+
+            {
+                filme ?
+                    <div id="movies-grid" className="movies-grid">
+                        {
+                            filme.map(movie => {
+                                return (
+                                    <div className='movie-item' key={movie.id}>
+                                        <Link to={`/filme/${movie.id}`}>
+                                            <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} />
+                                            <h3>{movie.title}</h3>
+                                        </Link>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+
+                :
+                    <Loading />
+            }
+        </>
     );
 };
