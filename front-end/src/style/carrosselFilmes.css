@@ -77,3 +77,16 @@
     right: 0;
 }
 
+
+.title{
+    display: flex;
+    align-items: baseline;
+    font-size: 1.5em;
+}
+
+
+.title h1{
+    margin-left: 3%;
+    color: #333;
+    
+}
