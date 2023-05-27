@@ -7,8 +7,6 @@
 }
 
 .trailer {
-  
-  
   color: #fff;
   background-color: #fff;
   border: 5px solid white;
@@ -63,4 +61,9 @@
 
 .showtime-item .type {
   font-style: italic;
+}
+
+.showtime-items-container {
+  position: absolute;
+  bottom: 20px;
 }
