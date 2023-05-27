@@ -1,0 +1,46 @@
+Cadastro.css
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.SignupForm {
+    background-color: #fff;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 50%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+input[type="submit"] {
+    background-color: #b1b1b1;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+}
+
+input[type="submit"]:hover {
+    background-color: #3e8e41;
+}

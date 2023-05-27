@@ -23,7 +23,7 @@ export default function CadeirasCine() {
     };
 
     return (
-        <div className="container">
+        <div className="container-cadeira">
             <div className="seats">
                 {seats.map((seatNumber) => {
                     const seatClassName = isSpaceBetween(seatNumber) ? "seat space" : "seat";

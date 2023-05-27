@@ -2,6 +2,7 @@ import "../../style/TrailerSinopse.css"
 import { useContext, useEffect, useState } from "react";
 import { ContextFilm } from "../../context/filmeContext";
 import Loading from "../loading";
+import { Link } from "react-router-dom";
 
 
 export default function TrailerSinopse() {
@@ -30,9 +31,9 @@ export default function TrailerSinopse() {
                                 <div className="showtime-item" key={index}>
                                     <div className="time-box">
                                         <div className="room">{showtime.room}</div>
-                                        <a href="outra_tela.html" className="time">
+                                        <Link className="time" to={`/filme/${filme.id}/info`}>
                                             {showtime.time}
-                                        </a>
+                                        </Link>
                                         <div className="type">{showtime.type}</div>
                                     </div>
                                 </div>

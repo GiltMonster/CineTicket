@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { keyV3, keyV4 } from "../apiKeys";
 import Banner from "../components/filmes/Banner";
-import TrailerSinopse from "../components/filmes/TrailerSinopse";
 import { ContextFilm } from "../context/filmeContext";
 import Loading from "../components/loading";
 

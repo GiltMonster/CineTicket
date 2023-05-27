@@ -7,11 +7,11 @@
 }
 
 .poster {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    flex-direction: column;
-    flex-wrap: nowrap;
+  display: flex;
+  align-items: stretch;
+  margin: 50px 0px 0px 20px;
+  flex-direction: row;
+  flex-wrap: nowrap;
   }
   
   .poster-img {
@@ -57,9 +57,6 @@
     color: #007bff;
   }
   
-  .bottom {
-    margin-bottom: 10px;
-  }
 
   .showtimes-box-lang {
     
@@ -108,4 +105,10 @@
     margin-right: 5px;
     background-color: #007bff;
     border-radius: 50%;
+  }
+
+  .dinheiro{
+    color: #69ac4f;
+    font-size: 1.5em;
+    text-decoration: underline;
   }
