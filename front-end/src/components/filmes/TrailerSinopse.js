@@ -25,7 +25,7 @@ export default function TrailerSinopse() {
                         {/* <h2>Sinopse</h2> */}
                         <p>{filme.overview}</p>
 
-                        <div className="showtime-items">
+                        <div className="showtime-items showtime-items-container">
                             {showtimesData.map((showtime, index) => (
                                 <div className="showtime-item" key={index}>
                                     <div className="time-box">

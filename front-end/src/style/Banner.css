@@ -54,6 +54,10 @@
   .genres {
     display: flex;
   }
+
+  .genres p {
+    margin-right: 5px;
+  }
   
   .age-rating {
     display: inline-block;
