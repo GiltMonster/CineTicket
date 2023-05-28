@@ -1,61 +1,62 @@
-import "../../style/TrailerSinopse.css"
+import "../../style/TrailerSinopse.css";
 import { useContext, useEffect, useState } from "react";
 import { ContextFilm } from "../../context/filmeContext";
 import Loading from "../loading";
 import { Link } from "react-router-dom";
 
-
 export default function TrailerSinopse() {
-    const filme = useContext(ContextFilm);
+  const filme = useContext(ContextFilm);
 
-    const showtimesData = [
-        { room: "Sala 1", time: "18:45", type: "DUB" },
-        { room: "Sala 2", time: "20:50", type: "LEG" },
-        { room: "Sala 3", time: "21:35", type: "DUB" },
-        { room: "Sala 4", time: "23:50", type: "LEG" },
-        { room: "Sala 5", time: "19:30", type: "DUB" },
-        { room: "Sala 6", time: "20:00", type: "LEG" },
-        // Adicione mais objetos para mais salas, horários e opções de dublagem/legendagem
-    ];
+  const showtimesData = [
+    { room: "Sala 1", time: "18:45", type: "DUB" },
+    { room: "Sala 2", time: "20:50", type: "LEG" },
+    { room: "Sala 3", time: "21:35", type: "DUB" },
+    { room: "Sala 4", time: "23:50", type: "LEG" },
+    { room: "Sala 5", time: "19:30", type: "DUB" },
+    { room: "Sala 6", time: "20:00", type: "LEG" },
+    // Adicione mais objetos para mais salas, horários e opções de dublagem/legendagem
+  ];
 
-    return (
-        filme ?
-            <div>
-                <div className="trailer-and-sinopse">
-                    <div className="sinopse">
-                        {/* <h2>Sinopse</h2> */}
-                        <p>{filme.overview}</p>
+  return filme ? (
+    <div>
+      <div className="trailer-and-sinopse">
+        <div className="sinopse">
+          {/* <h2>Sinopse</h2> */}
+          {filme.overview ? (
+            <p>{filme.overview}</p>
+          ) : (
+            <p>A sinopse deste filme não está disponível no momento. Por favor, verifique novamente mais tarde ou consulte informações adicionais sobre o filme.</p>
+          )}
 
-                        <div className="showtime-items showtime-items-container">
-                            {showtimesData.map((showtime, index) => (
-                                <div className="showtime-item" key={index}>
-                                    <div className="time-box">
-                                        <div className="room">{showtime.room}</div>
-                                        <Link className="time" to={`/filme/${filme.id}/info`}>
-                                            {showtime.time}
-                                        </Link>
-                                        <div className="type">{showtime.type}</div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="trailer">
-                        {/* <h2>Trailer</h2> */}
-                        <iframe
-                            width="560"
-                            height="315"
-                            src={`https://www.youtube.com/embed/${filme?.videos?.results[0]?.key}`}
-                            frameBorder="0"
-                            allowFullScreen
-                            title="Trailer"
-                        ></iframe>
-                    </div>
+          <div className="showtime-items showtime-items-container">
+            {showtimesData.map((showtime, index) => (
+              <div className="showtime-item" key={index}>
+                <div className="time-box">
+                  <div className="room">{showtime.room}</div>
+                  <Link className="time" to={`/filme/${filme.id}/info`}>
+                    {showtime.time}
+                  </Link>
+                  <div className="type">{showtime.type}</div>
                 </div>
-            </div>
-            :
+              </div>
+            ))}
+          </div>
+        </div>
 
-            <Loading />
-    );
+        <div className="trailer">
+          {/* <h2>Trailer</h2> */}
+          <iframe
+            width="560"
+            height="315"
+            src={`https://www.youtube.com/embed/${filme?.videos?.results[0]?.key}`}
+            frameBorder="0"
+            allowFullScreen
+            title="Trailer"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <Loading />
+  );
 }
