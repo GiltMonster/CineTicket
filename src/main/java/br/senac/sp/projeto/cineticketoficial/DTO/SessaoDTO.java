@@ -13,4 +13,8 @@ public class SessaoDTO {
     private LocalDate dataSessao;
     private Integer idFilme;
     private String idSala;
+
+    public boolean possuiAtributosNulos() {
+        return dataSessao == null || idFilme == null || idSala == null;
+    }
 }

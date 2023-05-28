@@ -1,4 +1,4 @@
-package br.senac.sp.projeto.cineticketoficial.view.rest;
+package br.senac.sp.projeto.cineticketoficial.restAPIs;
 
 import br.senac.sp.projeto.cineticketoficial.entity.Cadeira;
 import br.senac.sp.projeto.cineticketoficial.services.CadeiraService;
