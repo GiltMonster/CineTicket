@@ -45,7 +45,7 @@ export default function TrailerSinopse() {
 
         <div className="trailer">
           {/* <h2>Trailer</h2> */}
-          <iframe
+          <iframe 
             width="560"
             height="315"
             src={`https://www.youtube.com/embed/${filme?.videos?.results[0]?.key}`}
