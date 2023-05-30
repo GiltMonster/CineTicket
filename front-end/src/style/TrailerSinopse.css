@@ -84,6 +84,8 @@
     position: static;
     margin-top: 20px;
     justify-content: center;
+    margin-bottom: 50px;
+    font-size: x-large;
   }
   
   .showtime-item .time-box {
@@ -92,6 +94,11 @@
 
   .trailer {
     margin-top: 20px;
+  }
+
+  .sinopse p {
+    margin-bottom: 50px;
+    font-size: x-large;
   }
 }
 
