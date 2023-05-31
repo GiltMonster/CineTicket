@@ -34,6 +34,11 @@ public class ClienteRestController {
         return this.service.inserirCliente(cadastroDTO);
     }
 
+    @PostMapping("/atualizar")
+    public Cliente atualizarCliente(@RequestBody Cliente cliente) {
+        return this.service.atualizarCliente(cliente);
+    }
+
     //ok
     @GetMapping
     public List<Cliente> buscarTodosClientes() {

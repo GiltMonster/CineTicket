@@ -17,7 +17,6 @@ public class SessaoRestController {
 
     @GetMapping("/test")
     public SessaoDTO exemploJSON() {
-
         return new SessaoDTO();
     }
 

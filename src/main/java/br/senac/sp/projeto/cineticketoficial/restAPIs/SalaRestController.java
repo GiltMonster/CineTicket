@@ -19,7 +19,7 @@ public class SalaRestController {
     }
 
     @GetMapping()
-    public List<Sala> list() {
+    public List<Sala> listSalas() {
         return this.service.buscarTodasSalas();
     }
 

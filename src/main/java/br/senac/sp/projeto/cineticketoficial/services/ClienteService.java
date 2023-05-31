@@ -42,8 +42,12 @@ public class ClienteService {
         return cliente;
     }
 
+    public Cliente atualizarCliente(Cliente cliente) {
+        return this.repository.save(cliente);
+    }
+
     //não é necessario ter
-    @Deprecated
+
     public List<Cliente> buscarTodosClientes() {
         return this.repository.findAll();
     }
