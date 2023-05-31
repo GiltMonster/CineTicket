@@ -11,6 +11,8 @@ export default function Banner() {
 
   const genres = ["Ação", "Aventura", "Comédia"];
 
+  const isMobile = window.innerWidth <= 834;
+
   // Função para mapear a idade para a cor correspondente
   function getAgeRatingColor(age) {
     if (age >= 18) {
@@ -50,18 +52,28 @@ export default function Banner() {
           {ageRating}
         </div>
       </div>
-      <img
-        src={`https://image.tmdb.org/t/p/original/${filme.backdrop_path}`}
-        alt={`Banner do Filme: ${filme.title}`}
-        className="banner-image"
-      />
-      <div className="movie-poster">
+      {isMobile ? (
         <img
           src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`}
           alt={`Imagem do filme: ${filme.title}`}
-          className="poster-image"
+          className="banner-image"
         />
-      </div>
+      ) : (
+        <img
+          src={`https://image.tmdb.org/t/p/original/${filme.backdrop_path}`}
+          alt={`Banner do Filme: ${filme.title}`}
+          className="banner-image"
+        />
+      )}
+      {!isMobile && (
+        <div className="movie-poster">
+          <img
+            src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`}
+            alt={`Imagem do filme: ${filme.title}`}
+            className="poster-image"
+          />
+        </div>
+      )}
     </div>
   ) : (
     <Loading />
