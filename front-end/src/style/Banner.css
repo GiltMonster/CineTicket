@@ -96,7 +96,7 @@
 @media only screen and (max-width: 834px) {
   .movie-info {
     position: absolute;
-    top: 100px;
+    top: 80px;
     left: 50px;
     width: calc(100% - 40px);
     text-align: center;
@@ -116,41 +116,57 @@
     font-size: 1.3em;
   }
 
-  .banner-image {
-    display: none;
-  }
-
   .trailer-sinopse {
     position: absolute;
-    top: 150px;
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 40px);
     justify-content: center;
   }
 
-  .movie-poster {
-    position: static;
-    width: 100%;
-    height: auto;
-    background-color: transparent;
-    margin-top: 10px;
-    overflow: hidden;
-  }
-
-  .movie-poster::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
+  .banner-image {
+    mask-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgb(0, 0, 0));
   }
 }
 
 
 /* Estilos para celulares */
 @media only screen and (max-width: 480px) {
-  
+  .movie-info {
+    top: 80px;
+    left: 20px;
+    width: calc(100% - 40px);
+    text-align: center;
+  }
+
+  .movie-info h1 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+
+  .genre-border {
+    font-size: 1em;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .age-rating {
+    margin-top: 10px;
+    font-size: 1em;
+    padding: 3px 8px;
+  }
+
+  .trailer-sinopse {
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    justify-content: center;
+  }
+
+  .movie-banner {
+    width: 109vw;
+  }
 }
+

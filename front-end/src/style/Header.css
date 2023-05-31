@@ -40,3 +40,34 @@ header {
   text-decoration: none;
   font-size: 3em;
 }
+
+/* Estilos para tablets */
+@media (max-width: 768px) {
+  .search-box {
+    width: 60%;
+  }
+}
+
+/* Estilos para celulares */
+@media (max-width: 480px) {
+  .logo img {
+    width: 80px;
+  }
+
+  .search-box {
+    width: 70%;
+  }
+
+  #pesquisa {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .search-icon {
+    font-size: 1em;
+  }
+
+  .login {
+    font-size: 2em;
+  }
+}
