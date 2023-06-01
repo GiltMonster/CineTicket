@@ -43,12 +43,12 @@ export default function Cadastro() {
     };
 
     return (
-        <>
+        <div className="fundo_cadastro">
             <img className="imgLogin" src={img} alt={`Imagem de filmes`} />
-            <div className="SignupForm">
+            <div className="SignupForm ">
                 {!isCadastroSucesso ? (
-                    <form onSubmit={handleFormSubmit}>
-                        <h2>Cadastro</h2>
+                    <form className="form_cadastro" onSubmit={handleFormSubmit}>
+                        <h1>Cadastre-se:</h1>
                         <label htmlFor="email">E-mail:</label>
                         <input type="email" id="email" name="email" placeholder="E-mail" required onChange={(e) => setEmail(e.target.value)} />
                         <label htmlFor="firstName">Nome:</label>
@@ -71,6 +71,6 @@ export default function Cadastro() {
                     </div>
                 )}
             </div>
-        </>
+        </div>
     );
 }

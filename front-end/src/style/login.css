@@ -1,12 +1,20 @@
-body {
+.conteiner_login {
     font-family: Arial, sans-serif;
-    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-form {
+
+.fundo_form{
+    width: 50%;
+    margin: 15%;
+}
+
+.form_login {
     background-color: #fafafa;
     padding: 50px;
-    margin: 50px auto;
-    max-width: 50%;
+    border: 1px solid #bbb;
+    border-radius: 10px;
 }
 label {
     display: block;
@@ -32,16 +40,18 @@ input[type="submit"] {
 }
 input[type="submit"]:hover {
     background-color: #3e8e41;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
-.links {
+.cadastre_se {
     text-align: center;
     margin-top: 10px;
 }
-a {
+.links {
     color: #666;
     text-decoration: none;
 }
-a:hover {
+.links:hover {
     color: #000;
     text-decoration: underline;
 }
@@ -54,10 +64,4 @@ p {
 }
 .SignupForm{
     position: relative;
-}
-.imgLogin{
-    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.558), rgba(0, 0, 0, 0.479));
-    position: absolute;
-    width: 100%;
-    height: 100%;
 }

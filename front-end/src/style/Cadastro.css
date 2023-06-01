@@ -1,4 +1,8 @@
-Cadastro.css
+.fundo_cadastro{
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+}
 
 h2 {
     text-align: center;
@@ -6,15 +10,18 @@ h2 {
 }
 
 .SignupForm {
-    background-color: #fff;
     padding: 20px;
-    margin: 0 auto;
+    margin: 0px auto;
     max-width: 50%;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
+.form_cadastro {
+    background-color: #fafafa;
+    padding: 50px;
+    margin: 15% auto;
+    max-width: 50%;
+    background-color: #fafafa;
+    border-radius: 10px;
 }
 
 label {
@@ -23,7 +30,9 @@ label {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="tel"],
+input[type="date"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -43,4 +52,10 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #3e8e41;
+}
+.imgLogin{
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.558), rgba(0, 0, 0, 0.479));
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
