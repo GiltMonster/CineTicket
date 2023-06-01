@@ -7,7 +7,7 @@ import TrailerSinopse from "./TrailerSinopse";
 export default function Banner() {
   const filme = useContext(ContextFilm);
   const [colorRating, setColorRating] = useState();
-  const [ageRating, setAgeRating] = useState(18);
+  const [ageRating, setAgeRating] = useState(0);
 
   const genres = ["Ação", "Aventura", "Comédia"];
 
@@ -26,6 +26,7 @@ export default function Banner() {
     } else if (age >= 10) {
       return "#26a8fe";
     } else {
+      setAgeRating('L');
       return "#008000";
     }
   }
