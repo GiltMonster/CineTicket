@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #040404;
+    background-color: #fafafa;
 }
 form {
     background-color: #fafafa;
@@ -55,7 +55,7 @@ p {
 .SignupForm{
     position: relative;
 }
-img{
+.imgLogin{
     mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.558), rgba(0, 0, 0, 0.479));
     position: absolute;
     width: 100%;

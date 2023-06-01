@@ -1,4 +1,4 @@
-import {useState } from "react";
+import { useState } from "react";
 import "../../style/Cadastro.css";
 import axios from "axios";
 import img from "../../resource/img/movies.jpg";
@@ -26,8 +26,9 @@ export default function Cadastro() {
         senha: senha
     }
 
-    function enviar() {
-
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        // Lógica de cadastro aqui
         console.log(`STADO: Nome: ${nome}, Sobrenome: ${sobrenome}, data de nasc: ${dataNascimento}, telefone: ${telefone}, endereco: ${endereco}, senha: ${senha}`)
         axios.post("http://localhost:8080/api/clientes", data)
             .then((response) => {
@@ -35,12 +36,6 @@ export default function Cadastro() {
             }).catch(function (error) {
                 console.error(error);
             });
-    }
-
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-        // Lógica de cadastro aqui
-
         // Simulando o cadastro bem-sucedido após 2 segundos
         setTimeout(() => {
             setIsCadastroSucesso(true);
@@ -49,7 +44,7 @@ export default function Cadastro() {
 
     return (
         <>
-            <img src={img} alt={`Imagem de filmes`}/>
+            <img className="imgLogin" src={img} alt={`Imagem de filmes`} />
             <div className="SignupForm">
                 {!isCadastroSucesso ? (
                     <form onSubmit={handleFormSubmit}>
