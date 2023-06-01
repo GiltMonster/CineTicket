@@ -89,7 +89,7 @@ export default function CarrosselFilmes(filmes) {
     <>
 
 <div className="title-filme">
-    <h1>Filmes de pesquisa populares:</h1>
+    <h1>Em Cartaz:</h1>
 
 </div>
 
