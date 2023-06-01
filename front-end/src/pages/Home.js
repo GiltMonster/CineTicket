@@ -3,10 +3,30 @@ import CarrosselFilmes from "../components/home/carrosselFilmes";
 import axios from 'axios';
 import { keyV4 } from "../apiKeys";
 import Loading from "../components/loading";
+import CarrosselSessoesEspeciais from "../components/home/CarrosselSessoesEspeciais";
 
 export default function Home() {
 
     const [filmes, setFilmes] = useState()
+
+    const slides = [
+        {
+            image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
+            caption: "Texto do Slide 1",
+        },
+        {
+            image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
+            caption: "Texto do Slide 2",
+        },
+        {
+            image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
+            caption: "Texto do Slide 3",
+        },
+        {
+            image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
+            caption: "Texto do Slide 4",
+        },
+    ];
 
     function carregarFilmes() {
         const options = {
@@ -24,7 +44,7 @@ export default function Home() {
                 Authorization: `Bearer ${keyV4}`
             }
         };
-    
+
         axios
             .request(options)
             .then(function (response) {
@@ -33,24 +53,30 @@ export default function Home() {
             .catch(function (error) {
                 console.error(error);
             });
-    
+
     }
 
- 
-    useEffect(()=>{
+
+    useEffect(() => {
         carregarFilmes();
     }, []);
 
 
     return (
-       
-        filmes ?
-                  
-        <CarrosselFilmes filme={filmes}/>
-            
-        :
+        <>
+            <div>
+                <CarrosselSessoesEspeciais slides={slides} />
+            </div>
 
-        <Loading/> 
+            {
+                filmes ?
 
+                    <CarrosselFilmes filme={filmes} />
+
+                    :
+
+                    <Loading />
+            }
+        </>
     )
 }

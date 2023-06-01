@@ -33,9 +33,9 @@
 
 .movie .title {
     position: absolute;
-    bottom: 0;
+    bottom: 3px;
     left: 0;
-    width: 98%;
+    width: 100%;
     height: 5, 5%;
     padding: 5px;
     margin: 0;

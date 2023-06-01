@@ -15,15 +15,39 @@ export default function CarrosselFilmes(filmes) {
     const movieContainer = movieContainerRef.current;
     movieWidthRef.current = movies[0].offsetWidth;
 
+    // function nextSlide() {
+    //   currentIndex++;
+    //   if (currentIndex >= movies.length - 2) {
+    //     // Reinicie o carrossel no final
+    //     currentIndex = 0;
+    //   }
+
+    //   const translateXValue = -currentIndex * movieWidthRef.current;
+    //   movieContainer.style.transform = `translateX(${translateXValue}px)`;
+    // }
+
     function nextSlide() {
       currentIndex++;
-      if (currentIndex >= movies.length - 2) {
-        // Reinicie o carrossel no final
+      if (currentIndex >= movies.length - 3) {
         currentIndex = 0;
       }
-
+  
       const translateXValue = -currentIndex * movieWidthRef.current;
-      movieContainer.style.transform = `translateX(${translateXValue}px)`;
+      const carouselWidth = carousel.offsetWidth;
+      const containerWidth = movieContainer.offsetWidth;
+      const maxScroll = containerWidth - carouselWidth;
+      const lastMovieIndex = movies.length - 1;
+      const lastMovieRight = movies[lastMovieIndex].offsetLeft + movies[lastMovieIndex].offsetWidth;
+  
+      if (lastMovieRight < carouselWidth) {
+        movieContainer.style.transform = `translateX(0)`;
+        currentIndex = 0;
+      } else if (translateXValue > maxScroll) {
+        movieContainer.style.transform = `translateX(-${maxScroll}px)`;
+        currentIndex = Math.floor(maxScroll / movieWidthRef.current);
+      } else {
+        movieContainer.style.transform = `translateX(${translateXValue}px)`;
+      }
     }
 
     // Inicie o carrossel automaticamente
@@ -89,7 +113,7 @@ export default function CarrosselFilmes(filmes) {
     <>
 
 <div className="title-filme">
-    <h1>Filmes de pesquisa populares:</h1>
+    <h1>Em Cartaz:</h1>
 
 </div>
 
@@ -119,10 +143,10 @@ export default function CarrosselFilmes(filmes) {
               </div>
             </div>
             <button className="scroll-button scroll-button-left" onClick={scrollLeft}>
-              &lt;
+              &#10094;
             </button>
             <button className="scroll-button scroll-button-right" onClick={scrollRight}>
-              &gt;
+              &#10095;
             </button>
           </div>
 
