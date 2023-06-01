@@ -1,10 +1,10 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #040404;
 }
 form {
-    background-color: #fff;
-    padding: 20px;
+    background-color: #fafafa;
+    padding: 50px;
     margin: 50px auto;
     max-width: 50%;
 }
@@ -13,9 +13,9 @@ label {
     margin-bottom: 10px;
     text-align: justify;
 }
-input[type="text"], input[type="password"], input[type="email"] {
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="date"] {
     display: block;
-    width: 97%;
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -51,4 +51,13 @@ p {
 .esqueceu {
     display: block;
     text-align: justify;
+}
+.SignupForm{
+    position: relative;
+}
+img{
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.558), rgba(0, 0, 0, 0.479));
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }

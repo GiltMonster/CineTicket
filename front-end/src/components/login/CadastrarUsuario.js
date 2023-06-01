@@ -1,6 +1,7 @@
 import {useState } from "react";
 import "../../style/Cadastro.css";
 import axios from "axios";
+import img from "../../resource/img/movies.jpg";
 
 export default function Cadastro() {
 
@@ -47,11 +48,12 @@ export default function Cadastro() {
     };
 
     return (
-        <div>
-            <h2>Cadastro</h2>
+        <>
+            <img src={img} alt={`Imagem de filmes`}/>
             <div className="SignupForm">
                 {!isCadastroSucesso ? (
-                    <div>
+                    <form onSubmit={handleFormSubmit}>
+                        <h2>Cadastro</h2>
                         <label htmlFor="email">E-mail:</label>
                         <input type="email" id="email" name="email" placeholder="E-mail" required onChange={(e) => setEmail(e.target.value)} />
                         <label htmlFor="firstName">Nome:</label>
@@ -66,14 +68,14 @@ export default function Cadastro() {
                         <input type="text" id="endereco" name="endereco" placeholder="Endereço" required onChange={(e) => setEndereco(e.target.value)} />
                         <label htmlFor="password">Senha:</label>
                         <input type="password" id="password" name="password" placeholder="Senha" required onChange={(e) => setSenha(e.target.value)} />
-                        <input type="submit" value="Cadastrar" onClick={enviar} />
-                    </div>
+                        <input type="submit" value="Cadastrar" />
+                    </form>
                 ) : (
                     <div className="SuccessMessage">
                         <p>Cadastro realizado com sucesso!</p>
                     </div>
                 )}
             </div>
-        </div>
+        </>
     );
 }
