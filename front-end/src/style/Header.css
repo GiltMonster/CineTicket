@@ -10,7 +10,9 @@ header {
 }
 
 .logo img {
-  width: 100px;
+  margin-left: 5%;
+  width: 150px;
+  height: auto;
 }
 
 .search-box {
@@ -27,18 +29,27 @@ header {
   margin: 0% 0%;
   box-sizing: 50%;
   }
-
-.search-icon {
+  
+.search-icon{
+  color: #d1d1d1;
   font-size: 1.5em;
-  margin: 0% 1% 0% 0%;
+  margin-left: 10px;
 }
 
-.login{
+.search-icon:hover{
+  color: #9f9f9f;
+}
+  
+.icon_login a{
   margin:  0px 5px 0px 0px;
   height: auto;
-  color: #fff;
+  color: #d1d1d1;
   text-decoration: none;
   font-size: 3em;
+}
+
+.icon_login a:hover{
+  color: #9f9f9f;
 }
 
 /* Estilos para tablets */

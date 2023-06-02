@@ -16,13 +16,6 @@ export default function PesquisaFilmes() {
 
   return (
     <>
-      <Link
-        reloadDocument
-        className="search-icon"
-        to={`/pesquisarFilme/${pesquisa}`}
-      >
-        <FaSearch />
-      </Link>
       <input
         type="text"
         id="pesquisa"
@@ -31,6 +24,13 @@ export default function PesquisaFilmes() {
         onChange={(e) => setPesquisa(e.target.value)}
         onKeyDown={handleKeyPress}
       />
+      <Link
+        reloadDocument
+        className="search-icon"
+        to={`/pesquisarFilme/${pesquisa}`}
+      >
+        <FaSearch />
+      </Link>
     </>
   );
 }
