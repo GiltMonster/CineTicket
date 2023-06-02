@@ -1,5 +1,5 @@
 import "../../style/TrailerSinopse.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { ContextFilm } from "../../context/filmeContext";
 import Loading from "../loading";
 import { Link } from "react-router-dom";
