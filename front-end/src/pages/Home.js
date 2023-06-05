@@ -15,27 +15,33 @@ export default function Home() {
     const slides = [
         {
             image: CartazSessaoDevs,
-            caption: "Texto do Slide 1",
+            caption: "Sessão DEV's",
+            listId: 8255087
         },
         {
             image: CartazSessaoGames,
-            caption: "Texto do Slide 2",
-        },
-        {
-            image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
-            caption: "Texto do Slide 3",
+            caption: "Sessão de Games",
+            listId: 8255029
         },
         {
             image: CartazSessaoLiteratura,
+            caption: "Sessão literatura",
+            listId: 8255081
+        },
+        {
+            image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
             caption: "Texto do Slide 4",
+            listId: 0
         },
         {
             image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
             caption: "Texto do Slide 5",
+            listId: 0
         },
         {
             image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
             caption: "Texto do Slide 6",
+            listId: 0
         },
     ];
 
