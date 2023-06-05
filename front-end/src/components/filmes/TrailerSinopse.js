@@ -13,7 +13,6 @@ export default function TrailerSinopse() {
     { room: "Sala 3", time: "21:35", type: "DUB" },
     { room: "Sala 4", time: "23:50", type: "LEG" },
     { room: "Sala 5", time: "19:30", type: "DUB" },
-    { room: "Sala 6", time: "20:00", type: "LEG" },
     // Adicione mais objetos para mais salas, horários e opções de dublagem/legendagem
   ];
 
