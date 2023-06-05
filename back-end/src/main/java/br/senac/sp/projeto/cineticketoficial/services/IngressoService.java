@@ -29,14 +29,14 @@ public class IngressoService {
             throw new NullAttributesException();
         }
         Ingresso ingresso = criarIngressoAPartirDTO(ingressoDTO);
-        atualizarStatusCadeirasComIngressoDTO(ingressoDTO,ingresso);
+        atualizarStatusCadeirasComIngressoDTO(ingressoDTO, ingresso);
         return this.repository.save(ingresso);
     }
 
     private Ingresso criarIngressoAPartirDTO(IngressoDTO dto) {
         Ingresso ingresso = new Ingresso();
         ingresso.setDataCompra(LocalDate.now());
-        ingresso.setQuantidade( dto.getQuantidade());
+        ingresso.setQuantidade(dto.getQuantidade());
         ingresso.setValorUnitario(dto.getValorUnitario());
         ingresso.setValorTotal(
                 valorTotol(dto.getQuantidade(), dto.getValorUnitario()));

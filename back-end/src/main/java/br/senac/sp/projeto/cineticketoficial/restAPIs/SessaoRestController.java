@@ -1,4 +1,4 @@
-package br.senac.sp.projeto.cineticketoficial.view.rest;
+package br.senac.sp.projeto.cineticketoficial.restAPIs;
 
 
 import br.senac.sp.projeto.cineticketoficial.DTO.SessaoDTO;
@@ -17,7 +17,6 @@ public class SessaoRestController {
 
     @GetMapping("/test")
     public SessaoDTO exemploJSON() {
-
         return new SessaoDTO();
     }
 

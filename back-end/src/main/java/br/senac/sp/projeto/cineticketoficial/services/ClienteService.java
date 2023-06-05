@@ -15,7 +15,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ClienteService {
-
     private final ClienteRepository repository;
 
     public Cliente inserirCliente(CadastroDTO cadastroDTO) {
@@ -43,25 +42,29 @@ public class ClienteService {
         return cliente;
     }
 
+    public Cliente atualizarCliente(Cliente cliente) {
+        return this.repository.save(cliente);
+    }
+
     //não é necessario ter
+
     public List<Cliente> buscarTodosClientes() {
         return this.repository.findAll();
     }
 
     public Cliente buscarClientePorEmail(String email) {
         if (email == null) {
-            throw  new IllegalArgumentException("Email não pode ser Nulo");
+            throw new IllegalArgumentException("Email não pode ser Nulo");
         }
         return this.repository.findById(email).orElseThrow(ResourceNotFoundException::new);
     }
 
     public Cliente deletarCliente(String email) {
         if (email == null) {
-            throw  new IllegalArgumentException("Email não pode ser Nulo");
+            throw new IllegalArgumentException("Email não pode ser Nulo");
         }
         Cliente deleted = buscarClientePorEmail(email);
         repository.deleteById(email);
         return deleted;
     }
-
 }

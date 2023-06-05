@@ -1,4 +1,4 @@
-package br.senac.sp.projeto.cineticketoficial.view.rest;
+package br.senac.sp.projeto.cineticketoficial.restAPIs;
 
 import br.senac.sp.projeto.cineticketoficial.entity.Sala;
 import br.senac.sp.projeto.cineticketoficial.services.SalaService;
@@ -19,7 +19,7 @@ public class SalaRestController {
     }
 
     @GetMapping()
-    public List<Sala> list() {
+    public List<Sala> listSalas() {
         return this.service.buscarTodasSalas();
     }
 

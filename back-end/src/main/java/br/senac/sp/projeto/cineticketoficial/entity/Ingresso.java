@@ -1,5 +1,6 @@
 package br.senac.sp.projeto.cineticketoficial.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -44,9 +45,9 @@ public class Ingresso implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "data_compra")
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate dataCompra;
 
+    @JsonIgnore
     @JoinColumn(name = "email_cliente", referencedColumnName = "email")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Cliente cliente;

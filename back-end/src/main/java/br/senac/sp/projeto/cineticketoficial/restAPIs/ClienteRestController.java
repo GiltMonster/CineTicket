@@ -1,4 +1,4 @@
-package br.senac.sp.projeto.cineticketoficial.view.rest;
+package br.senac.sp.projeto.cineticketoficial.restAPIs;
 
 import br.senac.sp.projeto.cineticketoficial.DTO.CadastroDTO;
 import br.senac.sp.projeto.cineticketoficial.entity.Cliente;
@@ -34,6 +34,11 @@ public class ClienteRestController {
         return this.service.inserirCliente(cadastroDTO);
     }
 
+    @PostMapping("/atualizar")
+    public Cliente atualizarCliente(@RequestBody Cliente cliente) {
+        return this.service.atualizarCliente(cliente);
+    }
+
     //ok
     @GetMapping
     public List<Cliente> buscarTodosClientes() {
@@ -50,6 +55,4 @@ public class ClienteRestController {
     public Cliente buscarClientePorEmail(@PathVariable("email") String email) {
         return this.service.buscarClientePorEmail(email);
     }
-
-
 }

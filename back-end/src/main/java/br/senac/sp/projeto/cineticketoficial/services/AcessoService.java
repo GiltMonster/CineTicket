@@ -2,10 +2,13 @@ package br.senac.sp.projeto.cineticketoficial.services;
 
 import br.senac.sp.projeto.cineticketoficial.entity.Acesso;
 import br.senac.sp.projeto.cineticketoficial.exceptions.InvalidEmailException;
+import br.senac.sp.projeto.cineticketoficial.exceptions.LoginInvalidException;
 import br.senac.sp.projeto.cineticketoficial.exceptions.ResourceNotFoundException;
 import br.senac.sp.projeto.cineticketoficial.repository.AcessoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,5 +30,13 @@ public class AcessoService {
         acessoAtualizado.setSenha(acesso.getSenha());
         this.repository.save(acessoAtualizado);
         return acesso;
+    }
+
+    public Acesso validarLogin(Acesso acesso) {
+        Acesso validar = buscarAcessoPorEmail(acesso.getEmail());
+        if (!validar.getSenha().equals(acesso.getSenha())){
+            throw new LoginInvalidException();
+        }
+        return validar;
     }
 }

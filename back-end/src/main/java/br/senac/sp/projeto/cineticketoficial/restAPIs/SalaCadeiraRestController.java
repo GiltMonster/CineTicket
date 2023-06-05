@@ -1,4 +1,4 @@
-package br.senac.sp.projeto.cineticketoficial.view.rest;
+package br.senac.sp.projeto.cineticketoficial.restAPIs;
 
 import br.senac.sp.projeto.cineticketoficial.DTO.SalaCadeiraDTO;
 import br.senac.sp.projeto.cineticketoficial.entity.SalaCadeira;
