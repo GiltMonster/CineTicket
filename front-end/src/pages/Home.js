@@ -4,6 +4,9 @@ import axios from 'axios';
 import { keyV4 } from "../apiKeys";
 import Loading from "../components/loading";
 import CarrosselSessoesEspeciais from "../components/home/CarrosselSessoesEspeciais";
+import CartazSessaoGames from "../resource/img/CartazSessaoGames.png";
+import CartazSessaoLiteratura from "../resource/img/CartazSessaoLiteratura.png";
+import CartazSessaoDevs from "../resource/img/CartazSessaoDevs.png";
 
 export default function Home() {
 
@@ -11,11 +14,11 @@ export default function Home() {
 
     const slides = [
         {
-            image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
+            image: CartazSessaoDevs,
             caption: "Texto do Slide 1",
         },
         {
-            image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
+            image: CartazSessaoGames,
             caption: "Texto do Slide 2",
         },
         {
@@ -23,8 +26,16 @@ export default function Home() {
             caption: "Texto do Slide 3",
         },
         {
-            image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
+            image: CartazSessaoLiteratura,
             caption: "Texto do Slide 4",
+        },
+        {
+            image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
+            caption: "Texto do Slide 5",
+        },
+        {
+            image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
+            caption: "Texto do Slide 6",
         },
     ];
 
