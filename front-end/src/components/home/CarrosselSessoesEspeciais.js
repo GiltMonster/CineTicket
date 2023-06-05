@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../style/CarrosselSessoesEspeciais.css";
+import { Link } from "react-router-dom";
 
 export default function CarrosselSessoesEspeciais({ slides }) {
     const [slideIndex, setSlideIndex] = useState(0);
@@ -56,7 +57,9 @@ export default function CarrosselSessoesEspeciais({ slides }) {
             <div className="slideshow-container">
                 {slides.map((slide, index) => (
                     <div className="mySlides fade" key={index}>
+                        <Link to={`/listas/${slide.listId}`}>
                         <img src={slide.image} style={{ width: "100%" }} alt={`Slide ${index + 1}`} />
+                        </Link>
                     </div>
                 ))}
 

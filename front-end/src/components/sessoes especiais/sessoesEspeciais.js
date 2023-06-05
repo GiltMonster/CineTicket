@@ -3,19 +3,24 @@ import axios from 'axios';
 import { keyV3 } from '../../apiKeys';
 import Loading from '../loading';
 import '../../style/sessoesEspeciais.css';
+import { useParams } from 'react-router-dom';
 
-export default function SessoesEspeciais({ listaId, mesParametro }) {
+export default function SessoesEspeciais({ mesParametro }) {
+
+  const {listId} = useParams();
+  
   const [lista, setLista] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  
   useEffect(() => {
+    console.log(listId)
     buscarDetalhesLista();
   }, []);
 
   const buscarDetalhesLista = () => {
     const options = {
       method: 'GET',
-      url: `https://api.themoviedb.org/3/list/${ listaId }`,
+      url: `https://api.themoviedb.org/3/list/${ listId }`,
       params: {
         api_key: keyV3,
         language: 'pt-BR',
@@ -56,7 +61,7 @@ export default function SessoesEspeciais({ listaId, mesParametro }) {
         <div id="se_movies-grid">
           {lista.items.map((item, index) => (
             <div className="se_movie-item" key={item.id}>
-              <div className="se_movie-date">{obterDataFilme(index)}</div>
+              {/* <div className="se_movie-date">{obterDataFilme(index)}</div> */}
               <img
                 src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
                 alt={item.title}
