@@ -57,7 +57,7 @@ export default function CarrosselSessoesEspeciais({ slides }) {
             <div className="slideshow-container">
                 {slides.map((slide, index) => (
                     <div className="mySlides fade" key={index}>
-                        <Link to={`/listas/${slide.listId}`}>
+                        <Link to={`/listas/${slide.listId}/${slide.mesParametro}`}>
                         <img src={slide.image} style={{ width: "100%" }} alt={`Slide ${index + 1}`} />
                         </Link>
                     </div>
