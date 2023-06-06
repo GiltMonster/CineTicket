@@ -7,6 +7,9 @@ import CarrosselSessoesEspeciais from "../components/home/CarrosselSessoesEspeci
 import CartazSessaoGames from "../resource/img/CartazSessaoGames.png";
 import CartazSessaoLiteratura from "../resource/img/CartazSessaoLiteratura.png";
 import CartazSessaoDevs from "../resource/img/CartazSessaoDevs.png";
+import CartazSessaoNatal from "../resource/img/CartazSessaoNatal.png";
+import CartazSessaoBiografias from "../resource/img/CartazSessaoBiografias.png";
+import CartazSessaoClassicos from "../resource/img/CartazSessaoClassicos.png";
 
 export default function Home() {
 
@@ -19,29 +22,29 @@ export default function Home() {
             listId: 8255087
         },
         {
+            image: CartazSessaoBiografias,
+            caption: "Sessão Biografias",
+            listId: 8255081
+        },
+        {
             image: CartazSessaoGames,
             caption: "Sessão de Games",
             listId: 8255029
         },
         {
             image: CartazSessaoLiteratura,
-            caption: "Sessão literatura",
-            listId: 8255081
+            caption: "Sessão Literatura",
+            listId: 8255059
         },
         {
-            image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
-            caption: "Texto do Slide 4",
-            listId: 0
+            image: CartazSessaoClassicos,
+            caption: "Sessão Clássicos",
+            listId: 8255581
         },
         {
-            image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
-            caption: "Texto do Slide 5",
-            listId: 0
-        },
-        {
-            image: "https://ingresso-a.akamaihd.net/prd/img/movie/super-mario-bros/e092a890-d427-4367-a845-6e9506262a58.jpg",
-            caption: "Texto do Slide 6",
-            listId: 0
+            image: CartazSessaoNatal,
+            caption: "Sessão Natal",
+            listId: 8255541
         },
     ];
 
