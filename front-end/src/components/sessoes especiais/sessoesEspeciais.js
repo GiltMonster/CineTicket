@@ -5,9 +5,9 @@ import Loading from '../loading';
 import '../../style/sessoesEspeciais.css';
 import { useParams } from 'react-router-dom';
 
-export default function SessoesEspeciais({ mesParametro }) {
+export default function SessoesEspeciais() {
 
-  const {listId} = useParams();
+  const { listId, mesParametro } = useParams();
   
   const [lista, setLista] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -61,7 +61,7 @@ export default function SessoesEspeciais({ mesParametro }) {
         <div id="se_movies-grid">
           {lista.items.map((item, index) => (
             <div className="se_movie-item" key={item.id}>
-              {/* <div className="se_movie-date">{obterDataFilme(index)}</div> */}
+              <div className="se_movie-date">{obterDataFilme(index)}</div>
               <img
                 src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
                 alt={item.title}

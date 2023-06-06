@@ -23,7 +23,7 @@ function App() {
         <Route path="/pesquisarFilme/:nomeFilme" element={<FilmesPesquisados/>} />
         <Route path="/filme/:filmeId" element={<Filme />} />
         <Route path="/filme/:filmeId/info" element={<InfoFilme />} />
-        <Route path="/listas/:listId" element={<SessoesEspeciais />} />
+        <Route path="/listas/:listId/:mesParametro" element={<SessoesEspeciais />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
