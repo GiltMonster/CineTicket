@@ -18,33 +18,33 @@ export default function Home() {
     const slides = [
         {
             image: CartazSessaoDevs,
-            caption: "Sessão DEV's",
-            listId: 8255087
+            listId: 8255087,
+            mesParametro: 7
         },
         {
             image: CartazSessaoBiografias,
-            caption: "Sessão Biografias",
-            listId: 8255081
+            listId: 8255081,
+            mesParametro: 8
         },
         {
             image: CartazSessaoGames,
-            caption: "Sessão de Games",
-            listId: 8255029
+            listId: 8255029,
+            mesParametro: 9
         },
         {
             image: CartazSessaoLiteratura,
-            caption: "Sessão Literatura",
-            listId: 8255059
+            listId: 8255059,
+            mesParametro: 10
         },
         {
             image: CartazSessaoClassicos,
-            caption: "Sessão Clássicos",
-            listId: 8255581
+            listId: 8255581,
+            mesParametro: 11
         },
         {
             image: CartazSessaoNatal,
-            caption: "Sessão Natal",
-            listId: 8255541
+            listId: 8255541,
+            mesParametro: 12
         },
     ];
 
