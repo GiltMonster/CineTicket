@@ -2,6 +2,7 @@ package br.senac.sp.projeto.cineticketoficial.services;
 
 import br.senac.sp.projeto.cineticketoficial.entity.Acesso;
 import br.senac.sp.projeto.cineticketoficial.exceptions.InvalidEmailException;
+import br.senac.sp.projeto.cineticketoficial.exceptions.LoginInvalidException;
 import br.senac.sp.projeto.cineticketoficial.exceptions.ResourceNotFoundException;
 import br.senac.sp.projeto.cineticketoficial.repository.AcessoRepository;
 import org.junit.jupiter.api.Test;
@@ -116,4 +117,64 @@ class AcessoServiceTest {
         verify(repository, times(1)).findById(email);
         verify(repository, never()).save(acesso);
     }
+
+    @Test
+    void testValidarLogin_CredenciaisValidas() {
+        Acesso acesso = new Acesso();
+        acesso.setEmail("usuario@example.com");
+        acesso.setSenha("senha123");
+
+        Acesso retorno = new Acesso();
+        retorno.setEmail("usuario@example.com");
+        retorno.setSenha("senha123");
+
+        when(repository.findById("usuario@example.com")).thenReturn(Optional.of(retorno));
+
+        Acesso resultado = service.validarLogin(acesso);
+
+        assertSame(resultado, retorno);
+        verify(repository, times(1)).findById("usuario@example.com");
+    }
+
+    @Test
+    void testValidarLogin_SenhaInvalida() {
+        Acesso acesso = new Acesso();
+        acesso.setEmail("usuario@example.com");
+        acesso.setSenha("senhaIncorreta");
+
+        Acesso retorno = new Acesso();
+        retorno.setEmail("usuario@example.com");
+        retorno.setSenha("senha123");
+
+        // Configurar o comportamento mock para o método buscarAcessoPorEmail
+        when(repository.findById("usuario@example.com")).thenReturn(Optional.of(retorno));
+
+        // Chamar o método validarLogin deve lançar uma exceção LoginInvalidException
+        assertThrows(LoginInvalidException.class, () -> service.validarLogin(acesso));
+    }
+
+    @Test
+    void testValidarLogin_EmailInvalido() {
+        // Criar um objeto de acesso com um email inválido
+        Acesso acesso = new Acesso();
+        acesso.setEmail("usuario@example.com");
+        acesso.setSenha("senhaIncorreta");
+
+        when(repository.findById("usuario@example.com")).thenThrow(InvalidEmailException.class);
+
+        // Chamar o método validarLogin deve lançar uma exceção InvalidEmailException
+        assertThrows(InvalidEmailException.class, () -> service.validarLogin(acesso));
+    }
+
+    @Test()
+    public void testValidarLogin_EmailNaoEncontrado() {
+        Acesso acesso = new Acesso();
+        acesso.setEmail("email@naoexistente.com");
+        acesso.setSenha("senhaIncorreta");
+
+        when(repository.findById("email@naoexistente.com")).thenThrow(ResourceNotFoundException.class);
+
+        assertThrows(ResourceNotFoundException.class,()->service.validarLogin(acesso));
+    }
+
 }

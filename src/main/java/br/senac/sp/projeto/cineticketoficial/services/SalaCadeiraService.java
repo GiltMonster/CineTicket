@@ -18,10 +18,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SalaCadeiraService {
     private final SalaCadeiraRepository repository;
+    private final CadeiraService cadeiraService;
+    private final SalaService salaService;
 
 
     public SalaCadeira inserirEAtualizarSalaCadeira(SalaCadeiraDTO salaCadeiraDTO) {
-        if (salaCadeiraDTO.possuiAtributosNulos()){
+        if (salaCadeiraDTO.possuiAtributosNulos()) {
             throw new NullAttributesException();
         }
         SalaCadeira salaCadeira = criarSalaCadeiraAPartirDTO(salaCadeiraDTO);
@@ -49,7 +51,7 @@ public class SalaCadeiraService {
 
     public List<SalaCadeira> listarTodasSalaCadeiras() {
         List<SalaCadeira> cadeiras = this.repository.findAll();
-        if (cadeiras.isEmpty()){
+        if (cadeiras.isEmpty()) {
             throw new ResourceNotFoundException();
         }
         return cadeiras;
@@ -63,6 +65,27 @@ public class SalaCadeiraService {
             cadeirasEmUso.add(cadeiraUsada);
         }
         this.repository.saveAll(cadeirasEmUso);
+    }
+
+    public boolean criarSalaCadeiras() {
+        List<Cadeira> cadeiras = cadeiraService.buscarTodasCadeiras();
+        List<Sala> salas = salaService.buscarTodasSalas();
+        List<SalaCadeiraDTO> dtos = new ArrayList<>();
+        for (Sala sala : salas) {
+            for (Cadeira cadeira : cadeiras) {
+                SalaCadeiraDTO dto = new SalaCadeiraDTO();
+                dto.setIdSala(sala.getIdSala());
+                dto.setIdCadeira(cadeira.getIdCadeira());
+                dto.setOcupado(false);
+                dtos.add(dto);
+            }
+        }
+        for (SalaCadeiraDTO dto : dtos) {
+            inserirEAtualizarSalaCadeira(dto);
+        }
+
+
+        return true;
     }
 
 }

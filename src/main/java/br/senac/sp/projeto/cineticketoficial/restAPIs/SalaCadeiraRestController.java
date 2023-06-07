@@ -29,4 +29,9 @@ public class SalaCadeiraRestController {
     public List<SalaCadeira> list() {
         return this.service.listarTodasSalaCadeiras();
     }
+
+    @GetMapping("/criarSalaCadeira")
+    public boolean salaCadeiraCriadas() {
+        return this.service.criarSalaCadeiras();
+    }
 }

@@ -23,7 +23,7 @@ public class SalaRestController {
         return this.service.buscarTodasSalas();
     }
 
-    @PutMapping("/{idSala}")
+    @GetMapping("/{idSala}")
     public Sala buscarSalaPorId(@PathVariable("idSala") String idSala) {
         return this.service.buscarSalaPorId(idSala);
     }
