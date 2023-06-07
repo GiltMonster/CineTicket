@@ -73,7 +73,7 @@
   top: -25px;
   left: 50px;
   width: 200px;
-  height: 300px;
+  height: auto;
   background-color: #fafafa;
   display: flex;
   justify-content: center;

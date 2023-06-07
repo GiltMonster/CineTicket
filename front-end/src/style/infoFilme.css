@@ -1,114 +1,120 @@
 /* infoFilme.css */
 
-.caixa{
+.caixa {
   display: flex;
-    align-items: flex-start;
-    
+  align-items: flex-start;
+
 }
 
 .poster {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   margin: 50px 0px 0px 20px;
-  flex-direction: row;
+  padding: 10px;
+  flex-direction: column;
   flex-wrap: nowrap;
-  }
-  
-  .poster-img {
-    width: 200px;
-    height: auto;
-    margin-left: 4px;
-  }
-  
-  .font-movie {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    color: #333;
-  }
-  
-  .movie-box {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 10px;
-  }
-  
-  .movie_information_box {
-    display: flex;
-    margin-bottom: 15px;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-  }
-  
-  .show-small-version {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .bold {
-    font-weight: bold;
-  }
-  
-  .white-space {
-    margin-right: 5px;
-  }
-  
-  .fontHigh {
-    color: #007bff;
-  }
-  
+  border: 3px solid black;
+  border-radius: 10px;
+}
 
-  .showtimes-box-lang {
-    
-    background-color: transparent;
-    color: #d52a2a;
-    cursor: pointer;
-  }
-  
-  .showtimes-box {
-    border: 1px solid #333;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    background-color: transparent;
-    color: #007bff;
-    cursor: pointer;
-  }
-  
-  .language-box {
-    margin-left: 3px;
-  }
-  
-  .language-box::before {
-    content: "";
-    display: table-column;
-    width: 10px;
-    height: 10px;
-    margin-right: 5px;
-    background-color: #007bff;
-    border-radius: 50%;
-  }
-  
-  .hide-small-version {
-    display: none;
-  }
-  .generos{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  
-  .showtimes-box::before {
-    content: "";
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin-right: 5px;
-    background-color: #007bff;
-    border-radius: 50%;
-  }
+.poster-img {
+  width: 200px;
+  height: auto;
+  margin-left: 4px;
+  margin-bottom: 10px;
+}
 
-  .dinheiro{
-    color: #69ac4f;
-    font-size: 1.5em;
-    text-decoration: underline;
-  }
+.font-movie {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.movie-box {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.movie_information_box {
+  display: flex;
+  margin-bottom: 15px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+.show-small-version {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.white-space {
+  margin-right: 5px;
+}
+
+.fontHigh {
+  color: #007bff;
+}
+
+
+.showtimes-box-lang {
+
+  background-color: transparent;
+  color: #d52a2a;
+  cursor: pointer;
+}
+
+.showtimes-box {
+  border: 1px solid #333;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background-color: transparent;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.language-box {
+  margin-left: 3px;
+}
+
+.language-box::before {
+  content: "";
+  display: table-column;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  background-color: #007bff;
+  border-radius: 50%;
+}
+
+.hide-small-version {
+  display: none;
+}
+
+.generos {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.showtimes-box::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  background-color: #007bff;
+  border-radius: 50%;
+}
+
+.dinheiro {
+  color: #69ac4f;
+  font-size: 1.5em;
+  text-decoration: underline;
+}
