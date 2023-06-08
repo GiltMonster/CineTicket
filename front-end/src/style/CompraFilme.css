@@ -1,0 +1,9 @@
+.containerCompra{
+    display: flex;
+    justify-content:center ;
+}
+
+.cadeirasEaccordion{
+    display: flex;
+    flex-direction: column;
+}

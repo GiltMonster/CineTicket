@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "../../style/infoFilme.css";
-import CadeirasCine from "./cadeirasCine";
 import { useParams } from "react-router-dom";
 import { keyV3, keyV4 } from "../../apiKeys";
 import axios from "axios";
 import Loading from "../loading";
-import Accordion from "./Accordion";
 
 function InfoFilme() {
   let { filmeId } = useParams();
 
   const [filme, setFilme] = useState({});
-  const [selectedSeats, setSelectedSeats] = useState([]);
 
   function carregarFilmes() {
     const options = {
@@ -41,15 +38,6 @@ function InfoFilme() {
 
   }
 
-  const handleSeatClick = (seatNumber) => {
-    setSelectedSeats((prevSelectedSeats) => {
-      if (prevSelectedSeats.includes(seatNumber)) {
-        return prevSelectedSeats.filter((seat) => seat !== seatNumber);
-      } else {
-        return [...prevSelectedSeats, seatNumber];
-      }
-    });
-  };
 
   useEffect(() => {
     carregarFilmes();
@@ -103,9 +91,7 @@ function InfoFilme() {
             </div>
           </div>
         </div>
-        <CadeirasCine handleSeatClick={handleSeatClick} selectedSeats={selectedSeats} />
       </div>
-      <Accordion selectedSeats={selectedSeats} />
     </>
   ) : (
     <Loading />

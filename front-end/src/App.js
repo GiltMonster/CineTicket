@@ -7,8 +7,8 @@ import Header from "./components/headbar/Header";
 import FilmesPesquisados from "./components/headbar/FilmesPesquisados";
 import EsqueceuSenha from "./components/login/EsqueceuSenha";
 import Cadastro  from "./components/login/CadastrarUsuario";
-import InfoFilme from "./components/compra/infoFilmes";
 import SessoesEspeciais from "./components/sessoes especiais/sessoesEspeciais";
+import CompraFilme from "./pages/CompraFilme";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
         <Route path="/login/cadastro" element={<Cadastro />} />
         <Route path="/pesquisarFilme/:nomeFilme" element={<FilmesPesquisados/>} />
         <Route path="/filme/:filmeId" element={<Filme />} />
-        <Route path="/filme/:filmeId/info" element={<InfoFilme />} />
+        <Route path="/filme/:filmeId/info" element={<CompraFilme />} />
         <Route path="/listas/:listId/:mesParametro" element={<SessoesEspeciais />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
