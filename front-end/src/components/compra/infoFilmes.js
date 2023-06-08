@@ -5,16 +5,15 @@ import { useParams } from "react-router-dom";
 import { keyV3, keyV4 } from "../../apiKeys";
 import axios from "axios";
 import Loading from "../loading";
+import Accordion from "./Accordion";
 
 function InfoFilme() {
-
   let { filmeId } = useParams();
 
-
   const [filme, setFilme] = useState({});
+  const [selectedSeats, setSelectedSeats] = useState([]);
 
   function carregarFilmes() {
-
     const options = {
       method: 'GET',
       url: `https://api.themoviedb.org/3/movie/${filmeId}?api_key=${keyV3}&append_to_response=videos,images`,
@@ -35,7 +34,6 @@ function InfoFilme() {
       .then(function (response) {
         setFilme(response.data);
         console.log(response.data);
-
       })
       .catch(function (error) {
         console.error(error);
@@ -43,11 +41,23 @@ function InfoFilme() {
 
   }
 
+  const handleSeatClick = (seatNumber) => {
+    setSelectedSeats((prevSelectedSeats) => {
+      if (prevSelectedSeats.includes(seatNumber)) {
+        return prevSelectedSeats.filter((seat) => seat !== seatNumber);
+      } else {
+        return [...prevSelectedSeats, seatNumber];
+      }
+    });
+  };
+
   useEffect(() => {
     carregarFilmes();
-    console.log(filme)
   }, []);
 
+  if (Object.keys(filme).length === 0) {
+    return <Loading />;
+  }
 
   return filme ? (
     <>
@@ -93,8 +103,9 @@ function InfoFilme() {
             </div>
           </div>
         </div>
-        <CadeirasCine />
+        <CadeirasCine handleSeatClick={handleSeatClick} selectedSeats={selectedSeats} />
       </div>
+      <Accordion selectedSeats={selectedSeats} />
     </>
   ) : (
     <Loading />
