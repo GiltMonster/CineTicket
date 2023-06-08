@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Accordion from "../components/compra/Accordion";
 import CadeirasCine from "../components/compra/cadeirasCine";
 import InfoFilme from "../components/compra/infoFilmes";
@@ -8,7 +8,7 @@ export default function CompraFilme() {
 
     const [selectedSeats, setSelectedSeats] = useState([]);
 
-    const handleSeatClick = (seatNumber) => {
+    function handleSeatClick(seatNumber){
         setSelectedSeats((prevSelectedSeats) => {
             if (prevSelectedSeats.includes(seatNumber)) {
                 return prevSelectedSeats.filter((seat) => seat !== seatNumber);
@@ -17,6 +17,10 @@ export default function CompraFilme() {
             }
         });
     };
+
+    useEffect(()=>{
+        console.log(selectedSeats)
+    },[selectedSeats])
 
     return (
         <div className="containerCompra">
