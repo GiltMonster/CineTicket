@@ -84,17 +84,13 @@ export default function Home() {
 
     return (
         <>
-            <div>
-                <CarrosselSessoesEspeciais slides={slides} />
-            </div>
-
             {
                 filmes ?
-
-                    <CarrosselFilmes filme={filmes} />
-
+                    <div>
+                        <CarrosselSessoesEspeciais slides={slides} />
+                        <CarrosselFilmes filme={filmes} />
+                    </div>
                     :
-
                     <Loading />
             }
         </>
