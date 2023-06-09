@@ -8,8 +8,6 @@ import br.senac.sp.projeto.cineticketoficial.repository.AcessoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class AcessoService {
@@ -29,12 +27,12 @@ public class AcessoService {
         Acesso acessoAtualizado = buscarAcessoPorEmail(acesso.getEmail());
         acessoAtualizado.setSenha(acesso.getSenha());
         this.repository.save(acessoAtualizado);
-        return acesso;
+        return acessoAtualizado;
     }
 
     public Acesso validarLogin(Acesso acesso) {
         Acesso validar = buscarAcessoPorEmail(acesso.getEmail());
-        if (!validar.getSenha().equals(acesso.getSenha())){
+        if (!validar.getSenha().equals(acesso.getSenha())) {
             throw new LoginInvalidException();
         }
         return validar;

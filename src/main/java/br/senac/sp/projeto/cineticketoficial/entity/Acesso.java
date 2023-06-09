@@ -1,7 +1,6 @@
 
 package br.senac.sp.projeto.cineticketoficial.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +29,6 @@ public class Acesso implements Serializable {
     @Column(name = "senha")
     private String senha;
 
-    @JsonIgnore
     @JoinColumn(name = "email_cliente", referencedColumnName = "email", insertable = false, updatable = false)
     @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Cliente cliente;
