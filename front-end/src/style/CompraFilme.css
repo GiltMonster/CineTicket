@@ -1,9 +1,13 @@
+/* CompraFilme.css */
+
 .containerCompra{
     display: flex;
-    justify-content:center ;
+    justify-content:center;
+    flex-direction: column;
 }
 
 .cadeirasEaccordion{
     display: flex;
-    flex-direction: column;
+    justify-content:center;
+    flex-direction: row;
 }

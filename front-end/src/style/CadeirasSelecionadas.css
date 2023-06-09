@@ -1,0 +1,25 @@
+/* CadeirasSelecionadas.css */
+
+.cadeira {
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+    margin-top: 15px;
+    background-color: #28a745;
+    color: #fafafa;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.cadeiras-selecionadas {
+    display: flex;
+    flex-direction: row;
+}
+
+.cadeiras-selecionadas h4 {
+    margin-right: 10px;
+}

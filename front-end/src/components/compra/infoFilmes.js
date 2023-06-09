@@ -85,7 +85,7 @@ function InfoFilme() {
               </div>
 
               <div className="dinheiro">
-                <h1>R$100</h1>
+                <h3>Ingresso: R$ 25,00</h3>
               </div>
 
             </div>
