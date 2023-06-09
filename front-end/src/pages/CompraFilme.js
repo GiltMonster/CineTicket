@@ -6,10 +6,13 @@ import "../style/CompraFilme.css";
 
 export default function CompraFilme() {
 
+    const [logged, setLogged] = useState();
+    const [login, setLogin] = useState();
+
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [valorTotal, setValorTotal] = useState(0);
 
-    function handleSeatClick(seatNumber){
+    function handleSeatClick(seatNumber) {
         setSelectedSeats((prevSelectedSeats) => {
             if (prevSelectedSeats.includes(seatNumber)) {
                 return prevSelectedSeats.filter((seat) => seat !== seatNumber);
@@ -23,17 +26,31 @@ export default function CompraFilme() {
         setValorTotal(total);
     };
 
-    useEffect(()=>{
-        console.log(selectedSeats)
-    },[selectedSeats])
+    function verificaLogado() {
+        if (logged !== undefined) {
+            // Converte este json para objeto
+            setLogin(JSON.parse(logged));
+            //console.log(login)
+        }
+    }
+
+    useEffect(() => {
+        // Recupera o json do localStorage
+        setLogged(window.localStorage.getItem('login'));
+        // Converte este json para objeto
+        //setLogin(JSON.parse(logged));
+        verificaLogado();
+        console.log(login)
+        console.log(logged)
+    }, [selectedSeats, logged])
 
     return (
         <div className="containerCompra">
-            
+
             <div className="cadeirasEaccordion">
-            <InfoFilme />
+                <InfoFilme />
                 <CadeirasCine handleSeatClick={handleSeatClick} selectedSeats={selectedSeats} />
-                
+
             </div>
             <Accordion selectedSeats={selectedSeats} />
         </div>

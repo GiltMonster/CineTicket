@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import "../style/login.css"
 import axios from "axios";
-import { useContext, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { UserContext } from "../context/userContext";
 
 
 export default function Login() {
-
-    const contUser = useContext(UserContext);
 
     const [login, setLogin] = useState();
     const [email, setEmail] = useState();
@@ -26,34 +24,49 @@ export default function Login() {
             .then((response) => {
 
                 if (response.status == 200) {
-                    setLogin(contUser.logado = true);
-                    
+                    setLogin({
+                        logado: true,
+                        email: response.data.email,
+                        nome: "",
+                        sobrenome: "",
+                        dataNascimento: "",
+                        telefone: "",
+                        endereco: "",
+                        senha: ""
+                    })
                 }
-                console.log(login);
             }).catch((error) => {
                 console.error(error);
             });
     }
 
+    useEffect(() => {
+        // Cria um json a partir do objeto "login" 
+        let jsonAux = JSON.stringify(login);
+        // "Seta" este json no localStorage
+        window.localStorage.setItem('login', jsonAux);
+
+    }, [login]);
+
 
     return (
-        <div className="conteiner_login">
-            <div className="fundo_form">
-                <div className="form_login">
-                    <h1 for="login">Login:</h1>
-                    <input type="email" id="username" name="username" placeholder="E-mail" required onChange={(e) => setEmail(e.target.value)} />
-                    <input type="password" id="password" name="password" placeholder="Senha" required onChange={(e) => setSenha(e.target.value)} />
-                    <Link to={"/login/redefinirSenha"} className="links">Esqueceu sua senha?</Link>
-                    <p>
-                        <input type="submit" value="Entrar" onClick={logar} />
-                    </p>
+            <div className="conteiner_login">
+                <div className="fundo_form">
+                    <div className="form_login">
+                        <h1 for="login">Login:</h1>
+                        <input type="email" id="username" name="username" placeholder="E-mail" required onChange={(e) => setEmail(e.target.value)} />
+                        <input type="password" id="password" name="password" placeholder="Senha" required onChange={(e) => setSenha(e.target.value)} />
+                        <Link to={"/login/redefinirSenha"} className="links">Esqueceu sua senha?</Link>
+                        <p>
+                            <input type="submit" value="Entrar" onClick={logar} />
+                        </p>
 
-                    <div className="cadastre_se">
-                        Ainda não tem conta?
-                        <Link className="links" to={"/login/cadastro"}> Cadastre-se</Link>
+                        <div className="cadastre_se">
+                            Ainda não tem conta?
+                            <Link className="links" to={"/login/cadastro"}> Cadastre-se</Link>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     )
 }
