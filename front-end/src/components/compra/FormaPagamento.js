@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../style/FormaPagamento.css";
 
-const FormaPagamento = () => {
+const FormaPagamento = ({ valorTotal }) => {
     const [selectedPayment, setSelectedPayment] = useState("");
     const [cardNumber, setCardNumber] = useState("");
     const [expirationDate, setExpirationDate] = useState("");
@@ -38,6 +38,7 @@ const FormaPagamento = () => {
 
     return (
         <div className="forma-pagamento">
+            <h3>Total: {valorTotal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</h3>
             <h3>Selecione a forma de pagamento:</h3>
             <div className={`payment-option ${selectedPayment === "cartaoCredito" ? "option-selected" : ""}`}>
                 <label>

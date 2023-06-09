@@ -1,7 +1,7 @@
 import "../../style/cadeirasCine.css";
 import React from "react";
 
-export default function CadeirasCine({ handleSeatClick, selectedSeats }) {
+export default function CadeirasCine({ handleSeatClick, selectedSeats, isSeatsLocked }) {
   const seats = Array.from({ length: 175 }, (_, index) => index + 1);
 
   const isSpaceBetween = (seatNumber) => {
@@ -14,6 +14,12 @@ export default function CadeirasCine({ handleSeatClick, selectedSeats }) {
       (seatNumber >= 52 && seatNumber <= 67) ||
       (seatNumber >= 116 && seatNumber <= 131)
     );
+  };
+
+  const handleSeatToggle = (seatNumber) => {
+    if (!isSeatsLocked) {
+      handleSeatClick(seatNumber);
+    }
   };
 
   return (
@@ -32,7 +38,8 @@ export default function CadeirasCine({ handleSeatClick, selectedSeats }) {
               id={`seat-${seatNumber}`}
               className={`${seatClassName} ${isSelected ? "selected" : ""}`}
               style={seatStyle}
-              onClick={() => handleSeatClick(seatNumber)}
+              onClick={() => handleSeatToggle(seatNumber)}
+              disabled={isSeatsLocked}
             >
               {seatNumber}
             </div>

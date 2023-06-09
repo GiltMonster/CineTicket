@@ -3,7 +3,7 @@ import CadeirasSelecionadas from "./CadeirasSelecionadas";
 import FormaPagamento from "./FormaPagamento";
 import "../../style/Accordion.css";
 
-function Accordion({ selectedSeats, isPaymentSelected }) {
+function Accordion({ selectedSeats, valorTotal, toggleSeatsLock }) {
   const [isExpanded, setExpanded] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
@@ -11,21 +11,19 @@ function Accordion({ selectedSeats, isPaymentSelected }) {
     setExpanded(selectedSeats.length > 0);
   }, [selectedSeats]);
 
-  const handleTabClick = (tabIndex) => {
-    setActiveTab(tabIndex);
-  };
-
   const handleConfirmarClick = () => {
+    toggleSeatsLock();
     setActiveTab(1);
   };
 
   const calcularTotal = () => {
-    return selectedSeats.length * 25;
+    valorTotal = selectedSeats.length * 25
+    return valorTotal;
   };
 
   return (
     <div className="accordion">
-      <div className={`accordion-header-first ${activeTab === 0 ? "active" : ""}`} onClick={() => handleTabClick(0)}>
+      <div className={`accordion-header-first ${activeTab === 0 ? "active" : ""}`}>
         Seleção de Assentos
       </div>
       {isExpanded && activeTab === 0 && (
@@ -37,13 +35,12 @@ function Accordion({ selectedSeats, isPaymentSelected }) {
           <button className="accordion-confirm-button" onClick={handleConfirmarClick}>Confirmar</button>
         </div>
       )}
-      <div className={`accordion-header ${activeTab === 1 ? "active" : ""}`} onClick={() => handleTabClick(1)}>
+      <div className={`accordion-header ${activeTab === 1 ? "active" : ""}`}>
         Forma de Pagamento
       </div>
       {activeTab === 1 && (
         <div className={`accordion-content ${activeTab === 1 ? "active" : ""}`}>
-          <FormaPagamento />
-          {/* <h1>Teste</h1> */}
+          <FormaPagamento valorTotal={calcularTotal()} />
         </div>
       )}
     </div>
