@@ -67,7 +67,7 @@ public class SalaCadeiraService {
         this.repository.saveAll(cadeirasEmUso);
     }
 
-    public boolean criarSalaCadeiras() {
+    public boolean criarEResetSalaCadeiras() {
         List<Cadeira> cadeiras = cadeiraService.buscarTodasCadeiras();
         List<Sala> salas = salaService.buscarTodasSalas();
         List<SalaCadeiraDTO> dtos = new ArrayList<>();
@@ -83,9 +83,6 @@ public class SalaCadeiraService {
         for (SalaCadeiraDTO dto : dtos) {
             inserirEAtualizarSalaCadeira(dto);
         }
-
-
         return true;
     }
-
 }

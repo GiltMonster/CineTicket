@@ -30,8 +30,8 @@ public class SalaCadeiraRestController {
         return this.service.listarTodasSalaCadeiras();
     }
 
-    @GetMapping("/criarSalaCadeira")
+    @GetMapping("/criar-resetar")
     public boolean salaCadeiraCriadas() {
-        return this.service.criarSalaCadeiras();
+        return this.service.criarEResetSalaCadeiras();
     }
 }
