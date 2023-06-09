@@ -11,6 +11,7 @@ export default function CompraFilme() {
 
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [valorTotal, setValorTotal] = useState(0);
+    const [isSeatsLocked, setSeatsLocked] = useState(false);
 
     function handleSeatClick(seatNumber) {
         setSelectedSeats((prevSelectedSeats) => {
@@ -25,6 +26,10 @@ export default function CompraFilme() {
         const total = selectedSeats.length * 25;
         setValorTotal(total);
     };
+
+    function toggleSeatsLock() {
+        setSeatsLocked((prevIsSeatsLocked) => !prevIsSeatsLocked);
+    }
 
     function verificaLogado() {
         if (logged !== undefined) {
@@ -42,17 +47,16 @@ export default function CompraFilme() {
         verificaLogado();
         console.log(login)
         console.log(logged)
+        console.log(selectedSeats)
     }, [selectedSeats, logged])
 
     return (
         <div className="containerCompra">
-
             <div className="cadeirasEaccordion">
                 <InfoFilme />
-                <CadeirasCine handleSeatClick={handleSeatClick} selectedSeats={selectedSeats} />
-
+                <CadeirasCine handleSeatClick={handleSeatClick} selectedSeats={selectedSeats} isSeatsLocked={isSeatsLocked} />
             </div>
-            <Accordion selectedSeats={selectedSeats} />
+            <Accordion selectedSeats={selectedSeats} valorTotal={valorTotal} toggleSeatsLock={toggleSeatsLock} />
         </div>
     )
 }
