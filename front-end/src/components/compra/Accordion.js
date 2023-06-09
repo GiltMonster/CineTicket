@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import CadeirasSelecionadas from "./CadeirasSelecionadas";
-// import FormaPagamento from "./FormaPagamento";
+import FormaPagamento from "./FormaPagamento";
 import "../../style/Accordion.css";
 
-function Accordion({ selectedSeats }) {
+function Accordion({ selectedSeats, isPaymentSelected }) {
   const [isExpanded, setExpanded] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
@@ -42,8 +42,8 @@ function Accordion({ selectedSeats }) {
       </div>
       {activeTab === 1 && (
         <div className={`accordion-content ${activeTab === 1 ? "active" : ""}`}>
-          {/* <FormaPagamento /> */}
-          <h1>Teste</h1>
+          <FormaPagamento />
+          {/* <h1>Teste</h1> */}
         </div>
       )}
     </div>

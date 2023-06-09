@@ -1,0 +1,39 @@
+.forma-pagamento {
+    margin-top: 20px;
+}
+
+.forma-pagamento h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.forma-pagamento label {
+    display: block;
+    margin-top: 10px;
+}
+
+.forma-pagamento input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.forma-pagamento p {
+    margin-top: 10px;
+}
+
+/* Estilos para o QR code, você pode ajustar de acordo com a sua implementação */
+.qr-code {
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+}
+
+/* Estilo para a opção selecionada */
+.option-selected {
+    background-color: #125021;
+    color: #fafafa;
+}
