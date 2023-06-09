@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../style/FormaPagamento.css";
 
-const FormaPagamento = ({ valorTotal }) => {
+const FormaPagamento = ({ valorTotal, onPaymentSelect }) => {
     const [selectedPayment, setSelectedPayment] = useState("");
     const [cardNumber, setCardNumber] = useState("");
     const [expirationDate, setExpirationDate] = useState("");
@@ -10,6 +10,7 @@ const FormaPagamento = ({ valorTotal }) => {
 
     const handlePaymentChange = (event) => {
         setSelectedPayment(event.target.value);
+        onPaymentSelect();
     };
 
     const handleCardNumberChange = (event) => {

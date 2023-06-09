@@ -9,7 +9,7 @@
 
 .accordion-header {
     padding: 15px;
-    background-color: #e78312;
+    background-color: #e70;
     font-weight: bold;
     border: 1px solid black;
     border-top: transparent;
@@ -17,7 +17,7 @@
 
 .accordion-header-first {
     padding: 15px;
-    background-color: #e78312;
+    background-color: #e70;
     font-weight: bold;
     border: 1px solid black;
     border-top-left-radius: 10px;
@@ -36,11 +36,11 @@
     display: block;
 }
 
-/* Estilo para o botão de confirmar */
+/* Estilo para os botões */
 .accordion-confirm-button {
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #28a745;
+    background-color: #125021;
     color: #fafafa;
     font-weight: bold;
     border: none;
@@ -49,5 +49,41 @@
 }
 
 .accordion-confirm-button:hover {
-    background-color: #28a746d5;
+    background-color: #1d7d35;
+}
+
+.accordion-back-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #501212;
+    color: #fafafa;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.accordion-back-button:hover {
+    background-color: #7d1d1d;
+}
+
+.accordion-finish-button {
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #125021;
+    color: #fafafa;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.accordion-finish-button:hover {
+    background-color: #1d7d35;
+}
+
+.accordion-finish-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

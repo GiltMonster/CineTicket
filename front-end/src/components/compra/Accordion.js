@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate  } from "react-router-dom";
 import CadeirasSelecionadas from "./CadeirasSelecionadas";
 import FormaPagamento from "./FormaPagamento";
 import "../../style/Accordion.css";
@@ -6,6 +7,9 @@ import "../../style/Accordion.css";
 function Accordion({ selectedSeats, valorTotal, toggleSeatsLock }) {
   const [isExpanded, setExpanded] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
+  const [isPaymentSelected, setPaymentSelected] = useState(false);
+  const [isFinished, setFinished] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setExpanded(selectedSeats.length > 0);
@@ -14,6 +18,22 @@ function Accordion({ selectedSeats, valorTotal, toggleSeatsLock }) {
   const handleConfirmarClick = () => {
     toggleSeatsLock();
     setActiveTab(1);
+    setPaymentSelected(false);
+  };
+
+  const handleBackClick = () => {
+    toggleSeatsLock();
+    setActiveTab(0);
+  };
+
+  const handleFinishClick = () => {
+    setActiveTab(2);
+    setFinished(true);
+
+    setTimeout(() => {
+      // Redireciona o usuário para a página inicial
+      navigate("/");
+    }, 5000);
   };
 
   const calcularTotal = () => {
@@ -32,7 +52,7 @@ function Accordion({ selectedSeats, valorTotal, toggleSeatsLock }) {
           <div className="total">
             <h3>Total: {calcularTotal().toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</h3>
           </div>
-          <button className="accordion-confirm-button" onClick={handleConfirmarClick}>Confirmar</button>
+          <button className="accordion-confirm-button" onClick={handleConfirmarClick}>Continuar</button>
         </div>
       )}
       <div className={`accordion-header ${activeTab === 1 ? "active" : ""}`}>
@@ -40,7 +60,19 @@ function Accordion({ selectedSeats, valorTotal, toggleSeatsLock }) {
       </div>
       {activeTab === 1 && (
         <div className={`accordion-content ${activeTab === 1 ? "active" : ""}`}>
-          <FormaPagamento valorTotal={calcularTotal()} />
+          <FormaPagamento valorTotal={calcularTotal()} onPaymentSelect={() => setPaymentSelected(true)} />
+          <button className="accordion-back-button" onClick={handleBackClick}>Voltar</button>
+          <button className="accordion-finish-button" disabled={!isPaymentSelected} onClick={handleFinishClick}>Finalizar Compra</button>
+        </div>
+      )}
+      <div className={`accordion-header ${activeTab === 2 ? "active" : ""}`}>
+        Finalizando Compra
+      </div>
+      {activeTab === 2 && isFinished && (
+        <div className={`accordion-content ${activeTab === 2 ? "active" : ""}`}>
+          <h2>Compra Finalizada!</h2>
+          <p>Parabéns! Sua compra foi concluída com sucesso.</p>
+          <p>Você será redirecionado para a página inicial em 5 segundos...</p>
         </div>
       )}
     </div>
