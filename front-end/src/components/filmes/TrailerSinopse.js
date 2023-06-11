@@ -32,7 +32,7 @@ export default function TrailerSinopse() {
               <div className="showtime-item" key={index}>
                 <div className="time-box">
                   <div className="room">{showtime.room}</div>
-                  <Link className="time" to={`/filme/${filme.id}/info`}>
+                  <Link className="time" to={`/filme/${filme.id}/info/${showtime.room}/${showtime.time}/${showtime.type}`}>
                     {showtime.time}
                   </Link>
                   <div className="type">{showtime.type}</div>

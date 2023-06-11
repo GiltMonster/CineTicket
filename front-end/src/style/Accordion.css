@@ -87,3 +87,32 @@
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+.accordion-content-login {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    background-color: #fff;
+    height: auto;
+   
+    border-top: transparent;
+}
+
+.loginAccordion {
+    margin-top: 10px;
+    padding: 10px 20px;
+    width: 20%;
+    height: auto;
+    background-color: #125021;
+    color: #fafafa;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.loginAccordion:hover {
+    background-color: #1d7d35;
+}

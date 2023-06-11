@@ -6,8 +6,8 @@ import "../style/CompraFilme.css";
 
 export default function CompraFilme() {
 
-    const [logged, setLogged] = useState();
-    const [login, setLogin] = useState();
+    const [logged, setLogged] = useState({});
+    const [login, setLogin] = useState({});
 
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [valorTotal, setValorTotal] = useState(0);
@@ -32,22 +32,20 @@ export default function CompraFilme() {
     }
 
     function verificaLogado() {
-        if (logged !== undefined) {
+        if (logged === undefined) {
+            console.log("Logue")
+           
+        }else{
+            const logado = localStorage.getItem('login')
+            setLogged(logado);
             // Converte este json para objeto
-            setLogin(JSON.parse(logged));
-            //console.log(login)
+            setLogin(JSON.parse(logado));
         }
     }
 
     useEffect(() => {
         // Recupera o json do localStorage
-        setLogged(window.localStorage.getItem('login'));
-        // Converte este json para objeto
-        //setLogin(JSON.parse(logged));
         verificaLogado();
-        console.log(login)
-        console.log(logged)
-        console.log(selectedSeats)
     }, [selectedSeats, logged])
 
     return (
@@ -56,7 +54,7 @@ export default function CompraFilme() {
                 <InfoFilme />
                 <CadeirasCine handleSeatClick={handleSeatClick} selectedSeats={selectedSeats} isSeatsLocked={isSeatsLocked} />
             </div>
-            <Accordion selectedSeats={selectedSeats} valorTotal={valorTotal} toggleSeatsLock={toggleSeatsLock} />
+            <Accordion selectedSeats={selectedSeats} valorTotal={valorTotal} toggleSeatsLock={toggleSeatsLock} isLogado={login}/>
         </div>
     )
 }

@@ -7,6 +7,9 @@ import Loading from "../loading";
 
 function InfoFilme() {
   let { filmeId } = useParams();
+  let { room } = useParams();
+  let { time } = useParams();
+  let { type } = useParams();
 
   const [filme, setFilme] = useState({});
 
@@ -30,7 +33,6 @@ function InfoFilme() {
       .request(options)
       .then(function (response) {
         setFilme(response.data);
-        console.log(response.data);
       })
       .catch(function (error) {
         console.error(error);
@@ -42,6 +44,11 @@ function InfoFilme() {
   useEffect(() => {
     carregarFilmes();
   }, []);
+  
+  function formataData(data) {
+    const novaData = data.split("-");
+    return `${novaData[2]}/${novaData[1]}/${novaData[0]}`
+  }
 
   if (Object.keys(filme).length === 0) {
     return <Loading />;
@@ -62,25 +69,25 @@ function InfoFilme() {
               <div className="show-small-version bold bottom">
                 {filme.title}
                 <span className="showtimes-box-lang language-box" title="DUB" data-value="DUB">
-                  (DUB)
+                  ({type})
                 </span>
               </div>
 
               <div className="bottom">
                 <span className="white-space">Data:</span>
-                <span className="bold fontHigh">17/05/2021</span>
+                <span className="bold fontHigh">{formataData(filme?.release_date)}</span>
               </div>
               <div className="bottom">
                 <span className="white-space">Horário:</span>
-                <span className="bold fontHigh">20:00</span>
+                <span className="bold fontHigh">{time}</span>
               </div>
               <div className="bottom">
                 <span className="white-space">Sala:</span>
-                <span className="bold fontHigh send-left">01</span>
+                <span className="bold fontHigh send-left">{room}</span>
               </div>
               <div className="bottom generos">
                 {filme?.genres?.map((genre, index) => (
-                  <button type="button" title="acao" className="showtimes-box language-box" key={index}>{genre?.name}</button>
+                  <button type="button" title={genre?.name} className="showtimes-box language-box" key={index}>{genre?.name}</button>
                 ))}
               </div>
 

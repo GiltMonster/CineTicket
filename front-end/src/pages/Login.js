@@ -34,6 +34,7 @@ export default function Login() {
                         endereco: "",
                         senha: ""
                     })
+                    localStorage.setItem('login', JSON.stringify(login));
                 }
             }).catch((error) => {
                 console.error(error);
@@ -41,10 +42,7 @@ export default function Login() {
     }
 
     useEffect(() => {
-        // Cria um json a partir do objeto "login" 
-        let jsonAux = JSON.stringify(login);
-        // "Seta" este json no localStorage
-        window.localStorage.setItem('login', jsonAux);
+        logar();
 
     }, [login]);
 

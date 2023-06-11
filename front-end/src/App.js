@@ -22,7 +22,7 @@ function App() {
         <Route path="/login/cadastro" element={<Cadastro />} />
         <Route path="/pesquisarFilme/:nomeFilme" element={<FilmesPesquisados/>} />
         <Route path="/filme/:filmeId" element={<Filme />} />
-        <Route path="/filme/:filmeId/info" element={<CompraFilme />} />
+        <Route path="/filme/:filmeId/info/:room/:time/:type" element={<CompraFilme />} />
         <Route path="/listas/:listId/:mesParametro" element={<SessoesEspeciais />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
