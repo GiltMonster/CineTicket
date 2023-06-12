@@ -13,6 +13,22 @@ export default function CompraFilme() {
     const [valorTotal, setValorTotal] = useState(0);
     const [isSeatsLocked, setSeatsLocked] = useState(false);
 
+    const [infoSection, setInfoSection] = useState({
+        filmeId: "",
+        dataSection: "",
+        sala: "",
+        horario: "",
+        legDub: ""
+      });
+
+    const dataIngresso = {
+        quantidade:  selectedSeats.length,
+        cadeiras: selectedSeats,
+        valorUnitario: 25.00,
+        emailCliente: login.email,
+        idSessao: infoSection.sala
+    };
+
     function handleSeatClick(seatNumber) {
         setSelectedSeats((prevSelectedSeats) => {
             if (prevSelectedSeats.includes(seatNumber)) {
@@ -46,12 +62,17 @@ export default function CompraFilme() {
     useEffect(() => {
         // Recupera o json do localStorage
         verificaLogado();
+        
+        console.log(infoSection);
+        //mostra o objeto pro ingresso:
+        console.log(dataIngresso);
+
     }, [selectedSeats, logged])
 
     return (
         <div className="containerCompra">
             <div className="cadeirasEaccordion">
-                <InfoFilme />
+                <InfoFilme setInfoSection={setInfoSection}/>
                 <CadeirasCine handleSeatClick={handleSeatClick} selectedSeats={selectedSeats} isSeatsLocked={isSeatsLocked} />
             </div>
             <Accordion selectedSeats={selectedSeats} valorTotal={valorTotal} toggleSeatsLock={toggleSeatsLock} isLogado={login}/>

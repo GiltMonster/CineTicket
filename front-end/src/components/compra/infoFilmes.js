@@ -5,7 +5,7 @@ import { keyV3, keyV4 } from "../../apiKeys";
 import axios from "axios";
 import Loading from "../loading";
 
-function InfoFilme() {
+function InfoFilme({setInfoSection}) {
   let { filmeId } = useParams();
   let { room } = useParams();
   let { time } = useParams();
@@ -28,7 +28,7 @@ function InfoFilme() {
         Authorization: `Bearer ${keyV4}`
       }
     };
-
+    
     axios
       .request(options)
       .then(function (response) {
@@ -37,14 +37,26 @@ function InfoFilme() {
       .catch(function (error) {
         console.error(error);
       });
-
-  }
-
-
-  useEffect(() => {
-    carregarFilmes();
-  }, []);
-  
+      
+    }
+    
+    function addInfoFilme(filmeId, room, time, type) {
+      const data = filme.release_date;
+      setInfoSection({
+        filmeId: filmeId,
+        dataSection: data,
+        sala: room,
+        horario: time,
+        legDub: type
+      })
+    }
+    
+    useEffect(() => {
+      carregarFilmes();
+      addInfoFilme(filmeId, room, time, type);
+      
+    }, []);
+    
   function formataData(data) {
     const novaData = data.split("-");
     return `${novaData[2]}/${novaData[1]}/${novaData[0]}`
