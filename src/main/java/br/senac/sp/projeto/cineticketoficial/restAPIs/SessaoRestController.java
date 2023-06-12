@@ -22,7 +22,7 @@ public class SessaoRestController {
 
     @PostMapping
     public Sessao inserirSessao(@RequestBody SessaoDTO sessaoDTO) {
-        return this.service.inserirSessao(sessaoDTO);
+        return this.service.criarSessaoEFilme(sessaoDTO);
     }
 
     @GetMapping

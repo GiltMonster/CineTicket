@@ -1,6 +1,7 @@
 package br.senac.sp.projeto.cineticketoficial.services;
 
 import br.senac.sp.projeto.cineticketoficial.DTO.SessaoDTO;
+import br.senac.sp.projeto.cineticketoficial.entity.Filme;
 import br.senac.sp.projeto.cineticketoficial.entity.Sessao;
 import br.senac.sp.projeto.cineticketoficial.exceptions.IllegalArgumentException;
 import br.senac.sp.projeto.cineticketoficial.exceptions.ResourceNotFoundException;
@@ -17,11 +18,14 @@ public class SessaoService {
     private final FilmeService filmeService;
     private final SalaService salaService;
 
-    public Sessao inserirSessao(SessaoDTO sessaoDTO) {
+    public Sessao criarSessaoEFilme(SessaoDTO sessaoDTO) {
         Sessao sessao = new Sessao();
-        sessao.setIdSessao(1); // para o test
         sessao.setDataSessao(sessaoDTO.getDataSessao());
         sessao.setSala(salaService.buscarSalaPorId(sessaoDTO.getIdSala()));
+        Filme filme = new Filme();
+        filme.setIdFilme(sessaoDTO.getIdFilme());
+        filme.setTituloFilme(sessaoDTO.getNomeFilme());
+        filmeService.inserirFilme(filme);
         sessao.setFilme(filmeService.buscarFilmePorId(sessaoDTO.getIdFilme()));
         return this.repository.save(sessao);
     }

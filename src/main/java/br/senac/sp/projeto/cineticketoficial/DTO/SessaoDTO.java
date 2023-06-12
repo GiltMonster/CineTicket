@@ -12,9 +12,13 @@ import java.time.LocalDate;
 public class SessaoDTO {
     private LocalDate dataSessao;
     private Integer idFilme;
+    private String nomeFilme;
     private String idSala;
 
     public boolean possuiAtributosNulos() {
-        return dataSessao == null || idFilme == null || idSala == null;
+        return dataSessao == null ||
+                idFilme == null ||
+                idSala == null ||
+                idFilme == null ;
     }
 }
