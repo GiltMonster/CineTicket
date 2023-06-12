@@ -25,7 +25,7 @@ export default function CompraFilme() {
         quantidade:  selectedSeats.length,
         cadeiras: selectedSeats,
         valorUnitario: 25.00,
-        emailCliente: login.email,
+        emailCliente: login?.email,
         idSessao: infoSection.sala
     };
 
