@@ -3,12 +3,7 @@ package br.senac.sp.projeto.cineticketoficial.restAPIs;
 import br.senac.sp.projeto.cineticketoficial.entity.Acesso;
 import br.senac.sp.projeto.cineticketoficial.services.AcessoService;
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -23,7 +18,7 @@ public class AcessoRestController {
         return  login;
     }
 
-    @PostMapping("/atualizar")
+    @PutMapping("/atualizar")
     public Acesso atualizarAcesso(@RequestBody Acesso acesso) {
         return this.service.atualizarSenha(acesso);
     }

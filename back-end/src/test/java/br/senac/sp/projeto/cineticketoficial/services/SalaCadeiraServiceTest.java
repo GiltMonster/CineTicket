@@ -1,7 +1,10 @@
 package br.senac.sp.projeto.cineticketoficial.services;
 
 import br.senac.sp.projeto.cineticketoficial.DTO.SalaCadeiraDTO;
-import br.senac.sp.projeto.cineticketoficial.entity.*;
+import br.senac.sp.projeto.cineticketoficial.entity.Cadeira;
+import br.senac.sp.projeto.cineticketoficial.entity.Sala;
+import br.senac.sp.projeto.cineticketoficial.entity.SalaCadeira;
+import br.senac.sp.projeto.cineticketoficial.entity.SalaCadeiraPK;
 import br.senac.sp.projeto.cineticketoficial.exceptions.NullAttributesException;
 import br.senac.sp.projeto.cineticketoficial.exceptions.ResourceNotFoundException;
 import br.senac.sp.projeto.cineticketoficial.repository.SalaCadeiraRepository;
@@ -17,7 +20,9 @@ import static org.mockito.Mockito.*;
 
 class SalaCadeiraServiceTest {
     SalaCadeiraRepository repository = Mockito.mock(SalaCadeiraRepository.class);
-    SalaCadeiraService service = new SalaCadeiraService(repository);
+    CadeiraService cadeiraService = Mockito.mock(CadeiraService.class);
+    SalaService salaService = Mockito.mock(SalaService.class);
+    SalaCadeiraService service = new SalaCadeiraService(repository, cadeiraService, salaService);
 
     @Test
     void TestInserirEAtualizarSalaCadeira_Sucesso() {
@@ -31,7 +36,7 @@ class SalaCadeiraServiceTest {
         when(repository.save(any(SalaCadeira.class))).thenReturn(salaCadeira);
 
         SalaCadeira resultado = service.inserirEAtualizarSalaCadeira(dto);
-        assertEquals(salaCadeira,resultado);
+        assertEquals(salaCadeira, resultado);
     }
 
     @Test
@@ -102,7 +107,7 @@ class SalaCadeiraServiceTest {
         cadeirasOcupadas.add(dto3);
 
         List<SalaCadeira> cadeirasEmUso = new ArrayList<>();
-        for(SalaCadeiraDTO dto : cadeirasOcupadas) {
+        for (SalaCadeiraDTO dto : cadeirasOcupadas) {
             SalaCadeira sc = criarAPartirDTO(dto);
             sc.setOcupado(true);
             cadeirasEmUso.add(sc);
@@ -112,6 +117,43 @@ class SalaCadeiraServiceTest {
         service.atualizarStatusCadeiras(cadeirasOcupadas);
         verify(repository, times(cadeirasOcupadas.size())).save(any(SalaCadeira.class));
         verify(repository, times(1)).saveAll(anyCollection());
+    }
+
+    @Test
+    void testCriarEResetSalaCadeira_Sucesso() {
+        List<Cadeira> cadeiras = new ArrayList<>();
+        cadeiras.add(new Cadeira(1));
+        cadeiras.add(new Cadeira(2));
+        cadeiras.add(new Cadeira(3));
+
+        Sala sala1 = new Sala();
+        sala1.setIdSala("sala1");
+        sala1.setLegendado(true);
+        Sala sala2 = new Sala();
+        sala2.setIdSala("sala2");
+        sala2.setLegendado(false);
+        List<Sala> salas = new ArrayList<>();
+        salas.add(sala1);
+        salas.add(sala2);
+
+        List<SalaCadeiraDTO> dtos = new ArrayList<>();
+        for (Sala sala : salas) {
+            for (Cadeira cadeira : cadeiras) {
+                SalaCadeiraDTO dto = new SalaCadeiraDTO();
+                dto.setIdSala(sala.getIdSala());
+                dto.setIdCadeira(cadeira.getIdCadeira());
+                dto.setOcupado(false);
+                dtos.add(dto);
+            }
+        }
+
+        when(cadeiraService.buscarTodasCadeiras()).thenReturn(cadeiras);
+        when(salaService.buscarTodasSalas()).thenReturn(salas);
+
+        service.criarEResetSalaCadeiras();
+
+        verify(cadeiraService).buscarTodasCadeiras();
+        verify(salaService).buscarTodasSalas();
     }
 
 

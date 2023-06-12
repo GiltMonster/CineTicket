@@ -1,6 +1,7 @@
 
 package br.senac.sp.projeto.cineticketoficial.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -53,6 +54,7 @@ public class Cliente implements Serializable {
     @Column(name = "endereco")
     private String endereco;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente", fetch = FetchType.EAGER)
     private Acesso acesso;
 

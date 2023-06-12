@@ -40,7 +40,7 @@ public class ClienteRestController {
         return this.service.atualizarCliente(cliente);
     }
 
-    //ok
+    //ok -> só funciona se não tiver ingressos
     @GetMapping
     public List<Cliente> buscarTodosClientes() {
         return this.service.buscarTodosClientes();
@@ -52,7 +52,7 @@ public class ClienteRestController {
         return this.service.deletarCliente(email);
     }
 
-    @PutMapping(value = "/{email}")
+    @GetMapping (value = "/{email}")
     public Cliente buscarClientePorEmail(@PathVariable("email") String email) {
         return this.service.buscarClientePorEmail(email);
     }
