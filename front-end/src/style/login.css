@@ -7,11 +7,11 @@
 
 .fundo_form{
     width: 50%;
-    margin: 15%;
+    margin: 10%;
 }
 
 .form_login {
-    background-color: #fafafa;
+    background-color: #fafafa80;
     padding: 50px;
     border: 1px solid #bbb;
     border-radius: 10px;

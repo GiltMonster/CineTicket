@@ -16,11 +16,9 @@ h2 {
 }
 
 .form_cadastro {
-    background-color: #fafafa;
+    background-color: #fafafac3;
     padding: 50px;
-    margin: 15% auto;
-    max-width: 50%;
-    background-color: #fafafa;
+    margin: 5% auto;
     border-radius: 10px;
 }
 
