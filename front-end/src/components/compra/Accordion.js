@@ -66,7 +66,7 @@ function Accordion({ selectedSeats, valorTotal, toggleSeatsLock, isLogado }) {
               <button className="accordion-finish-button" disabled={!isPaymentSelected} onClick={handleFinishClick}>Finalizar Compra</button>
             </div>
           )
-
+          
           :
           activeTab === 1 && (
             <div className="accordion-content">
@@ -74,6 +74,7 @@ function Accordion({ selectedSeats, valorTotal, toggleSeatsLock, isLogado }) {
 
               <div className="accordion-content-login">
                 <Link className="loginAccordion" to={"/login"}>Login</Link>
+                <button className="loginAccordion-back" onClick={handleBackClick}>Voltar</button>
               </div>
             </div>
           )

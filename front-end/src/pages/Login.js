@@ -17,21 +17,18 @@ export default function Login() {
     }
 
     function logar() {
-        console.log(`STADO: email: ${email} senha: ${senha}`)
         const url = 'http://localhost:8080/api/acessos';
-
         axios.post(url, data)
-            .then((response) => {
-
+        .then((response) => {
                 if (response.status == 200) {
                     setLogin({
                         logado: true,
-                        email: response.data.email,
-                        nome: "",
-                        sobrenome: "",
-                        dataNascimento: "",
-                        telefone: "",
-                        endereco: "",
+                        email: response.data.cliente.email,
+                        nome: response.data.cliente.nome,
+                        sobrenome: response.data.cliente.sobrenome,
+                        dataNascimento: response.data.cliente.dataNascimento,
+                        telefone: response.data.cliente.telefone,
+                        endereco: response.data.cliente.endereco,
                         senha: ""
                     })
                     localStorage.setItem('login', JSON.stringify(login));
@@ -43,8 +40,7 @@ export default function Login() {
 
     useEffect(() => {
         logar();
-
-    }, [login]);
+    },[]);
 
 
     return (

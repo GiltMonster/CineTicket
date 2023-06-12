@@ -90,7 +90,9 @@
 
 .accordion-content-login {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
     padding: 15px;
     background-color: #fff;
@@ -115,4 +117,20 @@
 
 .loginAccordion:hover {
     background-color: #1d7d35;
+}
+
+.loginAccordion-back{
+    margin-top: 10px;
+    padding: 10px 20px;
+    width: 20%;
+    height: auto;
+    background-color: #501212;
+    color: #fafafa;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;   
+}
+.loginAccordion-back:hover{
+    background-color: #7d1d1d;    
 }
