@@ -4,6 +4,8 @@ import { keyV4 } from '../../apiKeys';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import Loading from '../loading';
+import filmeReserva from "../../resource/img/filmeReserva.png"
+
 
 export default function FilmesPesquisados() {
 
@@ -66,8 +68,13 @@ export default function FilmesPesquisados() {
                             filme.map(movie => {
                                 return (
                                     <div className='movie-item' key={movie.id}>
-                                        <Link to={`/filme/${movie.id}`}>
-                                            <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} />
+                                        <Link className='name-movie' to={`/filme/${movie.id}`}>
+                                            { movie.poster_path === null || movie.poster_path === undefined || movie.poster_path === ""? 
+                                                <img src={filmeReserva} alt={movie.title} />
+                                                :
+                                                <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} />
+                                                
+                                            }
                                             <h3>{movie.title}</h3>
                                         </Link>
                                     </div>
