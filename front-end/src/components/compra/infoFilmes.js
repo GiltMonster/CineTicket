@@ -5,7 +5,7 @@ import { keyV3, keyV4 } from "../../apiKeys";
 import axios from "axios";
 import Loading from "../loading";
 
-function InfoFilme({setInfoSection}) {
+function InfoFilme({setInfoSection, setFilmeCompra}) {
   let { filmeId } = useParams();
   let { room } = useParams();
   let { time } = useParams();
@@ -32,6 +32,7 @@ function InfoFilme({setInfoSection}) {
     axios
       .request(options)
       .then(function (response) {
+        setFilmeCompra(response.data);
         setFilme(response.data);
       })
       .catch(function (error) {
