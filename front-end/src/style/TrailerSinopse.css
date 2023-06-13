@@ -9,7 +9,7 @@
 
 .trailer {
   color: #fafafa;
-  background-color: #fff;
+  background-color: #fafafa;
   border: 5px solid white;
   border-bottom: 4px;
 }
@@ -22,8 +22,9 @@
 
 .showtime-items {
   display: flex;
-  margin-top: 50px;
-  margin-left: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
   color: #fafafa;
 }
 
@@ -67,6 +68,43 @@
 .showtime-items-container {
   position: absolute;
   bottom: 20px;
+  margin-left: 5vw;
+}
+
+.date-selector {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.date-button {
+  font-weight: bold;
+  display: inline-block;
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #000000;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.date-button:hover {
+  background-color: #b4b4b4;
+}
+
+.date-button.selected {
+  background-color: #000;
+  color: #fafafa;
+  border: 1px solid #fafafa;
+  transform: scale(1.1);
+  transition: transform 0.1s ease-in-out;
+}
+
+.date-button.selected:hover {
+  background-color: #1a1a1a;
 }
 
 /* Estilos para tablets */
@@ -92,13 +130,12 @@
   }
 
   .sinopse p {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     font-size: x-large;
   }
 
   .sinopse {
-    margin-left: 50%;
-    margin-right: 50%;
+    margin-top: 30px;
   }
 }
 
@@ -136,5 +173,9 @@
   .sinopse p {
     margin-bottom: 30px;
     font-size: medium;
+  }
+
+  .sinopse {
+    width: 100vw;
   }
 }

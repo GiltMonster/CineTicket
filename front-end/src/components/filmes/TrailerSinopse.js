@@ -1,11 +1,14 @@
-import "../../style/TrailerSinopse.css";
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ContextFilm } from "../../context/filmeContext";
 import Loading from "../loading";
 import { Link } from "react-router-dom";
+import { addDays, format } from "date-fns";
+
+import "../../style/TrailerSinopse.css";
 
 export default function TrailerSinopse() {
   const filme = useContext(ContextFilm);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const showtimesData = [
     { room: "Sala 1", time: "18:45", type: "DUB" },
@@ -15,6 +18,14 @@ export default function TrailerSinopse() {
     { room: "Sala 5", time: "19:30", type: "DUB" },
     // Adicione mais objetos para mais salas, horários e opções de dublagem/legendagem
   ];
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  const today = new Date();
+  const tomorrow = addDays(today, 1);
+  const dayAfterTomorrow = addDays(today, 2);
 
   return filme ? (
     <div>
@@ -26,8 +37,30 @@ export default function TrailerSinopse() {
           ) : (
             <p>A sinopse deste filme não está disponível no momento. Por favor, verifique novamente mais tarde ou consulte informações adicionais sobre o filme.</p>
           )}
+        </div>
+        <div className="showtime-items-container">
+          <div className="date-selector">
+            <button
+              className={`date-button ${format(selectedDate, "yyyy-MM-dd") === format(today, "yyyy-MM-dd") ? "selected" : ""}`}
+              onClick={() => handleDateChange(today)}
+            >
+              Hoje
+            </button>
+            <button
+              className={`date-button ${format(selectedDate, "yyyy-MM-dd") === format(tomorrow, "yyyy-MM-dd") ? "selected" : ""}`}
+              onClick={() => handleDateChange(tomorrow)}
+            >
+              {format(tomorrow, "dd/MM")}
+            </button>
+            <button
+              className={`date-button ${format(selectedDate, "yyyy-MM-dd") === format(dayAfterTomorrow, "yyyy-MM-dd") ? "selected" : ""}`}
+              onClick={() => handleDateChange(dayAfterTomorrow)}
+            >
+              {format(dayAfterTomorrow, "dd/MM")}
+            </button>
 
-          <div className="showtime-items showtime-items-container">
+          </div>
+          <div className="showtime-items">
             {showtimesData.map((showtime, index) => (
               <div className="showtime-item" key={index}>
                 <div className="time-box">
@@ -44,7 +77,7 @@ export default function TrailerSinopse() {
 
         <div className="trailer">
           {/* <h2>Trailer</h2> */}
-          <iframe 
+          <iframe
             width="560"
             height="315"
             src={`https://www.youtube.com/embed/${filme?.videos?.results[0]?.key}`}
