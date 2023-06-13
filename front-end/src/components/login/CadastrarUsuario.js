@@ -19,7 +19,7 @@ export default function Cadastro() {
     const data = {
         email: email,
         nome: nome,
-        sobrenome: nome,
+        sobrenome: sobrenome,
         dataNascimento: dataNascimento,
         telefone: telefone,
         endereco: endereco,

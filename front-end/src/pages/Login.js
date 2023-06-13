@@ -15,52 +15,55 @@ export default function Login() {
         email: email,
         senha: senha
     }
+    let dataLogin = {}
 
     function logar() {
         const url = 'http://localhost:8080/api/acessos';
         axios.post(url, data)
-        .then((response) => {
-                if (response.status == 200) {
-                    setLogin({
-                        logado: true,
-                        email: response.data.cliente.email,
-                        nome: response.data.cliente.nome,
-                        sobrenome: response.data.cliente.sobrenome,
-                        dataNascimento: response.data.cliente.dataNascimento,
-                        telefone: response.data.cliente.telefone,
-                        endereco: response.data.cliente.endereco,
-                        senha: ""
-                    })
-                    localStorage.setItem('login', JSON.stringify(login));
+            .then((response) => {
+                dataLogin = {
+                    logado: true,
+                    email: response.data.cliente.email,
+                    nome: response.data.cliente.nome,
+                    sobrenome: response.data.cliente.sobrenome,
+                    dataNascimento: response.data.cliente.dataNascimento,
+                    telefone: response.data.cliente.telefone,
+                    endereco: response.data.cliente.endereco,
+                    senha: ""
                 }
-            }).catch((error) => {
+                setLogin(dataLogin)
+            })
+            .then(() => {
+                window.localStorage.setItem('login', JSON.stringify(login))
+            })
+            .catch((error) => {
                 console.error(error);
             });
     }
 
     useEffect(() => {
-        logar();
-    },[]);
+
+    }, []);
 
 
     return (
-            <div className="conteiner_login">
-                <div className="fundo_form">
-                    <div className="form_login">
-                        <h1 for="login">Login:</h1>
-                        <input type="email" id="username" name="username" placeholder="E-mail" required onChange={(e) => setEmail(e.target.value)} />
-                        <input type="password" id="password" name="password" placeholder="Senha" required onChange={(e) => setSenha(e.target.value)} />
-                        <Link to={"/login/redefinirSenha"} className="links">Esqueceu sua senha?</Link>
-                        <p>
+        <div className="conteiner_login">
+            <div className="fundo_form">
+                <div className="form_login">
+                    <h1 for="login">Login:</h1>
+                    <input type="email" id="username" name="username" placeholder="E-mail" required onChange={(e) => setEmail(e.target.value)} />
+                    <input type="password" id="password" name="password" placeholder="Senha" required onChange={(e) => setSenha(e.target.value)} />
+                    <Link to={"/login/redefinirSenha"} className="links">Esqueceu sua senha?</Link>
+                    <p>
                             <input type="submit" value="Entrar" onClick={logar} />
-                        </p>
+                    </p>
 
-                        <div className="cadastre_se">
-                            Ainda não tem conta?
-                            <Link className="links" to={"/login/cadastro"}> Cadastre-se</Link>
-                        </div>
+                    <div className="cadastre_se">
+                        Ainda não tem conta?
+                        <Link className="links" to={"/login/cadastro"}> Cadastre-se</Link>
                     </div>
                 </div>
             </div>
+        </div>
     )
 }

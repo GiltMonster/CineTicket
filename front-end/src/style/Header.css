@@ -40,7 +40,7 @@ header {
   color: #9f9f9f;
 }
   
-.icon_login a{
+.icon_login{
   margin:  0px 5px 0px 0px;
   height: auto;
   color: #d1d1d1;
@@ -48,7 +48,7 @@ header {
   font-size: 3em;
 }
 
-.icon_login a:hover{
+.icon_login :hover{
   color: #9f9f9f;
 }
 
@@ -84,26 +84,54 @@ header {
 }
 .profile-popup {
   position: absolute;
-  top: 5%;
+  top: 70px;
   right: 0;
   display: block;
-  width: 150px;
+  width: 270px;
   padding: 10px;
   background-color: #f5f5f5;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+.profile-popup h2, h4{
+  color: #333;
+}
 
 .logout-button {
   width: 100%;
-  padding: 8px 10px;
+  height: auto;
+  padding: 10px;
   background-color: #dc3545;
   color: #fff;
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 }
 
 .logout-button:hover {
   background-color: #c82333;
+}
+
+.popup-login{
+  display: flex;
+  flex-direction: column;
+}
+
+.login-button {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  background-color: #3cae44;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.login-button:hover {
+  background-color: #2f8c35;
 }
