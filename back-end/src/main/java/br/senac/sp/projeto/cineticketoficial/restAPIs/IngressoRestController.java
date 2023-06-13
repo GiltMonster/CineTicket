@@ -11,7 +11,6 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/ingressos")
 public class IngressoRestController {
     private final IngressoService service;

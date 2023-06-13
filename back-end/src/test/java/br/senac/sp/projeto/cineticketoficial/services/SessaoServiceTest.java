@@ -47,10 +47,10 @@ class SessaoServiceTest {
         sessao.setSala(salaService.buscarSalaPorId(sessaoDTO.getIdSala()));
         sessao.setFilme(filmeService.buscarFilmePorId(sessaoDTO.getIdFilme()));
 
-        when(service.inserirSessao(sessaoDTO)).thenReturn(sessao);
+        when(service.criarSessaoEFilme(sessaoDTO)).thenReturn(sessao);
         when(repository.save(any(Sessao.class))).thenReturn(sessao);
 
-        Sessao resultado = service.inserirSessao(sessaoDTO);
+        Sessao resultado = service.criarSessaoEFilme(sessaoDTO);
 
         assertEquals(sessao, resultado);
     }
