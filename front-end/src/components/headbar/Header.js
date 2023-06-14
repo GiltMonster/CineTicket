@@ -25,7 +25,6 @@ export default function Header() {
         try {
             const logado = localStorage.getItem('login')
             setIsLogado(JSON.parse(logado));
-            setNome(`${isLogado?.nome} ${isLogado?.sobrenome}`);
             // Se chegou até aqui, o JSON é válido
             console.log("JSON válido:", isLogado);
             // Faça o que precisa ser feito com o JSON aqui
@@ -38,8 +37,12 @@ export default function Header() {
     }
 
     useEffect(() => {
+        
         verificaLogado();
-        console.log(isLogado);
+        if (isPopupOpen || nome) {
+            setNome(`${isLogado?.nome} ${isLogado?.sobrenome}`);
+        }
+
     }, [isPopupOpen, nome])
 
 

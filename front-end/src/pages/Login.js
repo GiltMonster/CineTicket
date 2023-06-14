@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import "../style/login.css"
 import axios from "axios";
 import { useEffect, useState } from 'react';
-import { UserContext } from "../context/userContext";
 
 
 export default function Login() {
@@ -15,13 +14,19 @@ export default function Login() {
         email: email,
         senha: senha
     }
-    let dataLogin = {}
 
+    useEffect(() => {
+        // Atualiza o localStorage quando o estado login mudar
+        if (login) {
+          window.localStorage.setItem('login', JSON.stringify(login));
+        }
+      }, [login]);
+    
     function logar() {
         const url = 'http://localhost:8080/api/acessos';
         axios.post(url, data)
             .then((response) => {
-                dataLogin = {
+                setLogin({
                     logado: true,
                     email: response.data.cliente.email,
                     nome: response.data.cliente.nome,
@@ -30,20 +35,11 @@ export default function Login() {
                     telefone: response.data.cliente.telefone,
                     endereco: response.data.cliente.endereco,
                     senha: ""
-                }
-                setLogin(dataLogin)
-            })
-            .then(() => {
-                window.localStorage.setItem('login', JSON.stringify(login))
-            })
-            .catch((error) => {
+                })
+            }).catch((error) => {
                 console.error(error);
             });
     }
-
-    useEffect(() => {
-
-    }, []);
 
 
     return (
