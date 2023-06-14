@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../../style/Cadastro.css";
 import axios from "axios";
 import img from "../../resource/img/movies.jpg";
+import { FaUserCheck } from "react-icons/fa";
 
 export default function Cadastro() {
 
@@ -67,7 +68,10 @@ export default function Cadastro() {
                     </form>
                 ) : (
                     <div className="SuccessMessage">
-                        <p>Cadastro realizado com sucesso!</p>
+                        <h1>Cadastro realizado com sucesso!</h1>
+                        <div className="div-icone">
+                            <FaUserCheck />
+                        </div>
                     </div>
                 )}
             </div>

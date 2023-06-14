@@ -8,7 +8,7 @@ import "../../style/TrailerSinopse.css";
 
 export default function TrailerSinopse() {
   const filme = useContext(ContextFilm);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split("T")[0]);
 
   const showtimesData = [
     { room: "Sala 1", time: "18:45", type: "DUB" },
@@ -20,7 +20,8 @@ export default function TrailerSinopse() {
   ];
 
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    setSelectedDate(date.toISOString().split("T")[0]);
+    console.log(selectedDate);
   };
 
   const today = new Date();
@@ -41,31 +42,32 @@ export default function TrailerSinopse() {
         <div className="showtime-items-container">
           <div className="date-selector">
             <button
-              className={`date-button ${format(selectedDate, "yyyy-MM-dd") === format(today, "yyyy-MM-dd") ? "selected" : ""}`}
+              className={`date-button ${selectedDate === today.toISOString().split("T")[0] ? "selected" : ""}`}
               onClick={() => handleDateChange(today)}
             >
               Hoje
             </button>
             <button
-              className={`date-button ${format(selectedDate, "yyyy-MM-dd") === format(tomorrow, "yyyy-MM-dd") ? "selected" : ""}`}
+              className={`date-button ${selectedDate === tomorrow.toISOString().split("T")[0] ? "selected" : ""}`}
               onClick={() => handleDateChange(tomorrow)}
             >
               {format(tomorrow, "dd/MM")}
             </button>
             <button
-              className={`date-button ${format(selectedDate, "yyyy-MM-dd") === format(dayAfterTomorrow, "yyyy-MM-dd") ? "selected" : ""}`}
+              className={`date-button ${selectedDate === dayAfterTomorrow.toISOString().split("T")[0] ? "selected" : ""}`}
               onClick={() => handleDateChange(dayAfterTomorrow)}
             >
               {format(dayAfterTomorrow, "dd/MM")}
             </button>
-
           </div>
           <div className="showtime-items">
             {showtimesData.map((showtime, index) => (
               <div className="showtime-item" key={index}>
                 <div className="time-box">
-                  <div className="room">{showtime.room}</div>
-                  <Link className="time" to={`/filme/${filme.id}/info/${showtime.room}/${showtime.time}/${showtime.type}`}>
+                  <Link
+                    className="time"
+                    to={`/filme/${filme.id}/info/${showtime.room}/${showtime.time}/${showtime.type}/${selectedDate}`}
+                  >
                     {showtime.time}
                   </Link>
                   <div className="type">{showtime.type}</div>
