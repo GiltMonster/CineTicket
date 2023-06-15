@@ -5,36 +5,41 @@
     background-color: #f2f2f2;
     border: 1px solid #ccc;
     border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.PasswordRecovery .button-container {
-    display: flex;
-    justify-content: center;
-}
-
-
-h2 {
+.PasswordRecovery h2 {
     font-size: 1.5rem;
     margin-bottom: 10px;
 }
 
-p {
+.PasswordRecovery p {
     margin-bottom: 20px;
 }
 
-form {
+.PasswordRecovery form {
     display: flex;
     flex-direction: column;
 }
 
-input[type="email"] {
+.PasswordRecovery input[type="email"],
+.PasswordRecovery input[type="password"] {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-input[type="submit"] {
+.PasswordRecovery .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.PasswordRecovery input[type="submit"] {
     background-color: #b1b1b1;
     color: #fff;
     padding: 10px;
@@ -44,6 +49,6 @@ input[type="submit"] {
     width: 100px;
 }
 
-input[type="submit"]:hover {
+.PasswordRecovery input[type="submit"]:hover {
     background-color: #3e8e41;
 }

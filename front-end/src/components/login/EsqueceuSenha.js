@@ -2,44 +2,71 @@ import React, { useState } from "react";
 import "../../style/EsqueceuSenha.css";
 
 export default function EsqueceuSenha() {
-    const [email, setEmail] = useState("");
-    const [enviado, setEnviado] = useState(false);
+  const [email, setEmail] = useState("");
+  const [senhaNova, setSenhaNova] = useState("");
+  const [confirmarSenhaNova, setConfirmarSenhaNova] = useState("");
+  const [enviado, setEnviado] = useState(false);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Aqui você pode adicionar a lógica para enviar o link de redefinição de senha para o e-mail fornecido
-        // Por exemplo, você pode fazer uma requisição a uma API de envio de e-mails ou executar qualquer outra ação necessária
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Verifique se a nova senha e a confirmação de senha coincidem
+    if (senhaNova !== confirmarSenhaNova) {
+      alert("A nova senha e a confirmação de senha não correspondem.");
+      return;
+    }
 
-        // Exemplo de ação fictícia que simula o envio do link:
-        setTimeout(() => {
-            setEnviado(true);
-        }, 2000);
-    };
+    // Lógica para enviar a nova senha e o e-mail
+    // Por exemplo, você pode fazer uma requisição a uma API ou serviço para atualizar a senha do usuário
+    // Certifique-se de validar e tratar os erros de forma adequada
 
-    return (
-        <div className="PasswordRecovery">
-            <h2>Recuperação de Senha</h2>
-            {enviado ? (
-                <p>Um e-mail com instruções de recuperação de senha foi enviado para {email}.</p>
-            ) : (
-                <>
-                    <p>Informe seu e-mail para receber instruções de recuperação de senha</p>
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Seu e-mail"
-                            required
-                            value={email}
-                            onChange={(event) => setEmail(event.target.value)}
-                        />
-                        <div className="button-container">
-                            <input type="submit" value="Enviar" />
-                        </div>
-                    </form>
-                </>
-            )}
-        </div>
-    );
+    // Exemplo fictício que simula a atualização da senha após 2 segundos
+    setTimeout(() => {
+      setEnviado(true);
+    }, 2000);
+  };
+
+  return (
+    <div className="PasswordRecovery">
+      <h2>Redefinir Senha</h2>
+      {enviado ? (
+        <p>Senha atualizada com sucesso!.</p>
+      ) : (
+        <>
+          <p>Preencha os campos abaixo para a atualização de sua senha.</p>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Seu e-mail"
+              required
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+            <input
+              type="password"
+              id="novaSenha"
+              name="novaSenha"
+              placeholder="Nova senha"
+              required
+              value={senhaNova}
+              onChange={(event) => setSenhaNova(event.target.value)}
+            />
+            <input
+              type="password"
+              id="confirmarSenhaNova"
+              name="confirmarSenhaNova"
+              placeholder="Confirmar nova senha"
+              required
+              value={confirmarSenhaNova}
+              onChange={(event) => setConfirmarSenhaNova(event.target.value)}
+            />
+            <div className="button-container">
+              <input type="submit" value="Enviar" />
+            </div>
+          </form>
+        </>
+      )}
+    </div>
+  );
 }
