@@ -58,7 +58,7 @@ header {
 }
 
 /* Estilos para tablets */
-@media (max-width: 768px) {
+@media (max-width: 834px) {
   .search-box {
     width: 60%;
   }
@@ -71,7 +71,7 @@ header {
   }
 
   .search-box {
-    width: 70%;
+    width: 50%;
   }
 
   #pesquisa {
@@ -80,13 +80,14 @@ header {
   }
 
   .search-icon {
-    font-size: 1em;
+    font-size: 1.3em;
   }
 
   .login {
     font-size: 2em;
   }
 }
+
 .profile-popup {
   position: absolute;
   z-index: 1;

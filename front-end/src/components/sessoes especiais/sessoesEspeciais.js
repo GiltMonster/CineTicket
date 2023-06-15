@@ -8,10 +8,10 @@ import { useParams } from 'react-router-dom';
 export default function SessoesEspeciais() {
 
   const { listId, mesParametro } = useParams();
-  
+
   const [lista, setLista] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     console.log(listId)
     buscarDetalhesLista();
@@ -20,7 +20,7 @@ export default function SessoesEspeciais() {
   const buscarDetalhesLista = () => {
     const options = {
       method: 'GET',
-      url: `https://api.themoviedb.org/3/list/${ listId }`,
+      url: `https://api.themoviedb.org/3/list/${listId}`,
       params: {
         api_key: keyV3,
         language: 'pt-BR',
@@ -46,13 +46,13 @@ export default function SessoesEspeciais() {
     const dia = String(dataFilme.getDate()).padStart(2, '0');
     const mes = String(dataFilme.getMonth() + 1).padStart(2, '0');
     return `${dia}/${mes}`;
-  };  
+  };
 
   return (
     <>
       <div className="se_title">
-        <h1>Sessão Cine Ticket</h1>
-        <h1>{lista ? lista.name : ''}</h1>
+        <h1 className="se_main-title">Sessão Cine Ticket</h1>
+        <h1 className="se_list-title">{lista ? lista.name : ''}</h1>
       </div>
 
       {loading ? (
