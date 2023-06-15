@@ -6,16 +6,19 @@ import { Link, useParams } from 'react-router-dom';
 import Loading from '../loading';
 import filmeReserva from "../../resource/img/filmeReserva.png"
 
-
 export default function FilmesPesquisados() {
-
     const [pesquisa, setPesquisa] = useState();
-    const [filme, setFilme] = useState();
+    const [filme, setFilme] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     let { nomeFilme } = useParams();
 
-    function buscarFilme() {
+    useEffect(() => {
+        setPesquisa(nomeFilme);
+        buscarFilme();
+    }, []);
 
+    function buscarFilme() {
         const options = {
             method: 'GET',
             url: 'https://api.themoviedb.org/3/search/movie',
@@ -36,56 +39,41 @@ export default function FilmesPesquisados() {
             .request(options)
             .then(function (response) {
                 setFilme(response.data.results);
+                setLoading(false);
             })
             .catch(function (error) {
                 console.error(error);
+                setLoading(false);
             });
-
     }
 
-    useEffect(() => {
-
-        setPesquisa(nomeFilme);
-        buscarFilme();
-
-    }, []);
-
-
     return (
-
         <>
-
-            <div  className='title'>
+            <div className='title'>
                 <h1>Resultados da sua pesquisa:</h1>
-                <h3>{pesquisa}</h3> 
+                <h3>{pesquisa}</h3>
             </div>
 
-
-            {
-                filme ?
-                    <div id="movies-grid" className="movies-grid">
-                        {
-                            filme.map(movie => {
-                                return (
-                                    <div className='movie-item' key={movie.id}>
-                                        <Link className='name-movie' to={`/filme/${movie.id}`}>
-                                            { movie.poster_path === null || movie.poster_path === undefined || movie.poster_path === ""? 
-                                                <img src={filmeReserva} alt={movie.title} />
-                                                :
-                                                <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} />
-                                                
-                                            }
-                                            <h3>{movie.title}</h3>
-                                        </Link>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-
-                :
-                    <Loading />
-            }
+            {loading ? (
+                <Loading />
+            ) : filme.length > 0 ? (
+                <div id="movies-grid" className="movies-grid">
+                    {filme.map(movie => (
+                        <div className='movie-item' key={movie.id}>
+                            <Link className='name-movie' to={`/filme/${movie.id}`}>
+                                {movie.poster_path ? (
+                                    <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} />
+                                ) : (
+                                    <img src={filmeReserva} alt={movie.title} />
+                                )}
+                                <h3>{movie.title}</h3>
+                            </Link>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <p>Nenhum resultado encontrado.</p>
+            )}
         </>
     );
-};
+}
