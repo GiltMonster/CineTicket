@@ -1,0 +1,81 @@
+.ingresso-impressao {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    width: 400px;
+    font-family: Arial, sans-serif;
+}
+
+.ingresso-impressao h2 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.ingresso {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.ingresso h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.ingresso p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.ingresso::before,
+.ingresso::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.ingresso::after {
+    clear: both;
+}
+
+.ingresso .filme-info {
+    float: left;
+    width: 60%;
+}
+
+.ingresso .sessao-info {
+    float: right;
+    width: 40%;
+    text-align: right;
+}
+
+.ingresso .sessao-info p {
+    font-weight: bold;
+}
+
+.ingresso .codigo-ingresso {
+    font-size: 12px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.ingresso .codigo-ingresso span {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+@media (max-width: 500px) {
+    .ingresso-impressao {
+        width: 100%;
+    }
+
+    .ingresso .filme-info,
+    .ingresso .sessao-info {
+        float: none;
+        width: 100%;
+    }
+}
