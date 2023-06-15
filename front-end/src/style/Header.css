@@ -39,6 +39,11 @@ header {
 .search-icon:hover{
   color: #9f9f9f;
 }
+
+.disabled {
+  color: #9f9f9f;
+  cursor:initial;
+}
   
 .icon_login{
   margin:  0px 5px 0px 0px;
