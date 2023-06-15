@@ -9,6 +9,7 @@ export default function CompraFilme() {
 
     const [logged, setLogged] = useState({});
     const [login, setLogin] = useState({});
+    const [sessaoPesquisada, setSessaoPesquisada] = useState({});
 
     const [filmeCompra, setFilmeCompra] = useState([]);
     const [selectedSeats, setSelectedSeats] = useState([]);
@@ -23,47 +24,105 @@ export default function CompraFilme() {
         legDub: ""
     });
 
-    const dataIngresso = {
+    //sessao - FEITO
+    const requestDataSection = {
+        dataSessao: infoSection.dataSection,
+        idFilme: parseInt(infoSection.filmeId),
+        nomeFilme: filmeCompra?.title,
+        idSala: formataIdSALA(infoSection.sala)
+    };
+
+    //sala - FEITO
+    const requestDataSala = {
+        idSala: formataIdSALA(infoSection.sala),
+        legendado: legendadoDublado(infoSection.legDub)
+    };
+
+    const requestDataIngresso = {
         quantidade: selectedSeats.length,
         cadeiras: selectedSeats,
         valorUnitario: 25.00,
         emailCliente: login?.email,
-        idSessao: infoSection.sala
+        idSessao: sessaoPesquisada?.idSessao
     };
+    
+    useEffect(() => {
+        // Recupera o json do localStorage
+        verificaLogado();
 
+        verificarIdFilmeExiste(requestDataSection.idFilme);
 
-    // Função para fazer as requisições POST
-    function salvaObjetos() {
-        //https://axios-http.com/ptbr/docs/post_example
-        // Dados da requisição 1
-        const requestDataSection = {
-            dataSessao: "2023-05-20",
-            idFilme: infoSection.filmeId,
-            nomeFilme: filmeCompra?.title,
-            idSala: infoSection.sala
-        };
+        console.log("Info da sessao:");
+        console.log(requestDataSection);
+        //mostra o objeto pro ingresso:
+        console.log("Dados do ingresso:");
+        console.log(requestDataIngresso);
 
-        // Dados da requisição 2
-        const requestDataIngresso = dataIngresso;
+        // console.log("Dados do sala:");
+        // console.log(requestDataSala);
 
-        // Envia as requisições POST em paralelo usando axios.all()
-        axios.all([
-            //sessoes:
-            axios.post('http://localhost:8080/api/sessoes', requestDataSection),
-            axios.post('http://localhost:8080/api/ingressos', requestDataIngresso),
-        ])
-            .then(axios.spread((response1, response2) => {
-                // Processa as respostas individuais
-                // Imprime os dados da resposta 1 no console
-                console.log(response1.data);
-                // Imprime os dados da resposta 2 no console
-                console.log(response2.data);
-            }))
-            .catch(error => {
-                // Trata os erros caso ocorra algum problema em alguma das requisições
-                console.error(error);
-            });
+    }, [selectedSeats, logged, infoSection])
+    
+    function legendadoDublado(dl) {
+        if (dl === "LEG") {
+            return true;
+        } else {
+            return false;
+        }
     }
+
+    function formataIdSALA(sala) {
+        return sala.replace(/ /g, "");
+    }
+
+    function verificarIdFilmeExiste(idFilme) {
+        return axios
+          .get(`http://localhost:8080/api/sessoes`)
+          .then((res) => {
+            const sessaoEncontrada = res.data.find(
+              (sessao) => sessao.filme.idFilme === parseInt(idFilme)
+            );
+    
+            if (sessaoEncontrada) {
+              setSessaoPesquisada(sessaoEncontrada);
+              console.log("achei");
+              return true;
+            } else {
+              console.log("não achei");
+              return false;
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    
+      function comprar() {
+        const idFilme = requestDataSection.idFilme;
+        verificarIdFilmeExiste(idFilme).then((idFilmeExiste) => {
+          if (idFilmeExiste) {
+              axios.post("http://localhost:8080/api/ingressos", requestDataIngresso)
+              .then(
+                axios.spread((response1) => {
+                  console.log(response1.data);
+                })
+              )
+              .catch((error) => {
+                console.error(error);
+              });
+          } else {
+            axios
+              .post(`http://localhost:8080/api/sessoes`, requestDataSection)
+              .then((res) => {
+                console.log(res);
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          }
+        });
+      }
+    
 
     function handleSeatClick(seatNumber) {
         setSelectedSeats((prevSelectedSeats) => {
@@ -87,7 +146,7 @@ export default function CompraFilme() {
         if (logged === undefined) {
             console.log("Logue")
 
-        }else{
+        } else {
             const logado = localStorage.getItem('login')
             setLogged(logado);
             // Converte este json para objeto
@@ -95,17 +154,6 @@ export default function CompraFilme() {
         }
     }
 
-    useEffect(() => {
-        // Recupera o json do localStorage
-        verificaLogado();
-
-        console.log("Info da sessao:");
-        console.log(infoSection);
-        //mostra o objeto pro ingresso:
-        console.log("Dados do ingresso:");
-        console.log(dataIngresso);
-
-    }, [selectedSeats, logged])
 
     return (
         <div className="containerCompra">
@@ -113,7 +161,7 @@ export default function CompraFilme() {
                 <InfoFilme setInfoSection={setInfoSection} setFilmeCompra={setFilmeCompra} />
                 <CadeirasCine handleSeatClick={handleSeatClick} selectedSeats={selectedSeats} isSeatsLocked={isSeatsLocked} />
             </div>
-            <Accordion selectedSeats={selectedSeats} valorTotal={valorTotal} toggleSeatsLock={toggleSeatsLock} isLogado={login} />
+            <Accordion selectedSeats={selectedSeats} valorTotal={valorTotal} toggleSeatsLock={toggleSeatsLock} isLogado={login} comprar={comprar} />
         </div>
     )
 }

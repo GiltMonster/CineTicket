@@ -4,7 +4,7 @@ import CadeirasSelecionadas from "./CadeirasSelecionadas";
 import FormaPagamento from "./FormaPagamento";
 import "../../style/Accordion.css";
 
-function Accordion({ selectedSeats, valorTotal, toggleSeatsLock, isLogado }) {
+function Accordion({ selectedSeats, valorTotal, toggleSeatsLock, isLogado, comprar }) {
   const [isExpanded, setExpanded] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const [isPaymentSelected, setPaymentSelected] = useState(false);
@@ -63,7 +63,7 @@ function Accordion({ selectedSeats, valorTotal, toggleSeatsLock, isLogado }) {
             <div className={`accordion-content ${activeTab === 1 ? "active" : ""}`}>
               <FormaPagamento valorTotal={calcularTotal()} onPaymentSelect={() => setPaymentSelected(true)} />
               <button className="accordion-back-button" onClick={handleBackClick}>Voltar</button>
-              <button className="accordion-finish-button" disabled={!isPaymentSelected} onClick={handleFinishClick}>Finalizar Compra</button>
+              <button className="accordion-finish-button" disabled={!isPaymentSelected} onClick={comprar}>Finalizar Compra</button>
             </div>
           )
           

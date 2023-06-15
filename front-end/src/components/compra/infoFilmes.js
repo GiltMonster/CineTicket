@@ -42,11 +42,11 @@ function InfoFilme({setInfoSection, setFilmeCompra}) {
       
     }
     
-    function addInfoFilme(filmeId, room, time, type) {
-      const data = filme.release_date;
+    function addInfoFilme(filmeId, room, time, type, date) {
+      
       setInfoSection({
         filmeId: filmeId,
-        dataSection: data,
+        dataSection: formataDataParaEnviar(date),
         sala: room,
         horario: time,
         legDub: type
@@ -55,13 +55,19 @@ function InfoFilme({setInfoSection, setFilmeCompra}) {
     
     useEffect(() => {
       carregarFilmes();
-      addInfoFilme(filmeId, room, time, type);
+      addInfoFilme(filmeId, room, time, type, date);
       
-    }, []);
+    }, [InfoFilme]);
     
   function formataData(data) {
     const novaData = data.split("-");
-    return `${novaData[2]-1}/${novaData[1]}/${novaData[0]}`
+    return `${novaData[2]}/${novaData[1]}/${novaData[0]}`
+  }
+  
+  function formataDataParaEnviar(data) {
+    const novaData = data.split("-");
+    const str = `${novaData[0]}-${novaData[1]}-${novaData[2]}`
+    return `${str}`
   }
 
   if (Object.keys(filme).length === 0) {
