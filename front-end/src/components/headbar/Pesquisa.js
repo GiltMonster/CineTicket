@@ -9,6 +9,12 @@ export default function PesquisaFilmes() {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
+      realizarPesquisa();
+    }
+  };
+
+  const realizarPesquisa = () => {
+    if (pesquisa.trim() !== "") {
       navigate(`/pesquisarFilme/${pesquisa}`);
       window.location.reload();
     }
@@ -26,8 +32,13 @@ export default function PesquisaFilmes() {
       />
       <Link
         reloadDocument
-        className="search-icon"
+        className={`search-icon ${pesquisa.trim() === "" ? "disabled" : ""}`}
         to={`/pesquisarFilme/${pesquisa}`}
+        onClick={(e) => {
+          if (pesquisa.trim() === "") {
+            e.preventDefault();
+          }
+        }}
       >
         <FaSearch />
       </Link>
