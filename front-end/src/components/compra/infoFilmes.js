@@ -10,6 +10,7 @@ function InfoFilme({setInfoSection, setFilmeCompra}) {
   let { room } = useParams();
   let { time } = useParams();
   let { type } = useParams();
+  let { date } = useParams();
 
   const [filme, setFilme] = useState({});
 
@@ -60,7 +61,7 @@ function InfoFilme({setInfoSection, setFilmeCompra}) {
     
   function formataData(data) {
     const novaData = data.split("-");
-    return `${novaData[2]}/${novaData[1]}/${novaData[0]}`
+    return `${novaData[2]-1}/${novaData[1]}/${novaData[0]}`
   }
 
   if (Object.keys(filme).length === 0) {
@@ -88,7 +89,7 @@ function InfoFilme({setInfoSection, setFilmeCompra}) {
 
               <div className="bottom">
                 <span className="white-space">Data:</span>
-                <span className="bold fontHigh">{formataData(filme?.release_date)}</span>
+                <span className="bold fontHigh">{formataData(date)}</span>
               </div>
               <div className="bottom">
                 <span className="white-space">Horário:</span>
