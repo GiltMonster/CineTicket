@@ -84,3 +84,47 @@
 .available:hover {
     background-color: #ccc;
 }
+  
+  /* Estilos para celulares */
+  @media (max-width: 480px) {
+    .container-cadeira {
+        margin: 10px;
+        width: 95vw;
+        height: auto;
+      }
+
+      .seats{
+        width: 95vw;
+      }
+
+      .seat {
+        width: 13.5px;
+        height: 13.5px;
+        font-size: 7px;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+      }
+
+      .seat.space {
+        margin-right: 60px;
+      }
+
+      .legend-item span {
+        font-size: 10px;
+    }
+
+    .legend-item .seat {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .legend {
+        margin-top: 10px;
+    }
+
+    .screen {
+        margin-top: 10px;
+        height: 13px;
+        font-size: 10px;
+    }
+  }

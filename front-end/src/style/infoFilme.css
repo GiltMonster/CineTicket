@@ -3,7 +3,6 @@
 .caixa {
   display: flex;
   align-items: flex-start;
-
 }
 
 .poster {
@@ -65,7 +64,6 @@
 
 
 .showtimes-box-lang {
-
   background-color: transparent;
   color: #d52a2a;
   cursor: pointer;
@@ -119,6 +117,54 @@
   font-size: 1.3em;
 }
 
-.bottom{
+.bottom {
   font-size: 1.5em;
+}
+
+/* Estilos para tablets */
+@media (max-width: 834px) {
+  .caixa {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .poster {
+    margin-top: 10px;
+  }
+
+  .movie-box {
+    width: 50vw;
+  }
+
+  .poster-img {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Estilos para celulares */
+@media (max-width: 480px) {
+  .caixa {
+    width: 95vw;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .poster {
+    margin-top: 10px;
+  }
+
+  .movie-box {
+    width: 80vw;
+  }
+
+  .poster-img {
+    width: 120px;
+    margin-bottom: 20px;
+  }
+
+  .font-movie {
+    font-size: 10px;
+  }
 }
