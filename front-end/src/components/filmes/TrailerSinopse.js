@@ -64,6 +64,7 @@ export default function TrailerSinopse() {
             {showtimesData.map((showtime, index) => (
               <div className="showtime-item" key={index}>
                 <div className="time-box">
+                  <div className="room">{showtime.room}</div>
                   <Link
                     className="time"
                     to={`/filme/${filme.id}/info/${showtime.room}/${showtime.time}/${showtime.type}/${selectedDate}`}

@@ -70,7 +70,7 @@ function Accordion({ selectedSeats, valorTotal, toggleSeatsLock, isLogado, compr
           :
           activeTab === 1 && (
             <div className="accordion-content">
-              <h2>Logue para continuar:</h2>
+              <h2>Faça o login para continuar:</h2>
 
               <div className="accordion-content-login">
                 <Link className="loginAccordion" to={"/login"}>Login</Link>

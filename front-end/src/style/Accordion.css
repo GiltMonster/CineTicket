@@ -97,12 +97,10 @@
     padding: 15px;
     background-color: #fff;
     height: auto;
-   
     border-top: transparent;
 }
 
 .loginAccordion {
-    margin-top: 10px;
     padding: 10px 20px;
     width: 20%;
     height: auto;
@@ -119,7 +117,7 @@
     background-color: #1d7d35;
 }
 
-.loginAccordion-back{
+.loginAccordion-back {
     margin-top: 10px;
     padding: 10px 20px;
     width: 20%;
@@ -129,8 +127,67 @@
     font-weight: bold;
     border: none;
     border-radius: 5px;
-    cursor: pointer;   
+    cursor: pointer;
 }
-.loginAccordion-back:hover{
-    background-color: #7d1d1d;    
+
+.loginAccordion-back:hover {
+    background-color: #7d1d1d;
+}
+
+@media only screen and (max-width: 834px) {
+    .accordion {
+        width: 90vw;
+        margin-left: 5vw;
+    }
+
+    .accordion-header,
+    .accordion-header-first {
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .accordion-content,
+    .accordion-content-login {
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    .accordion-content-login {
+        font-size: 13px;
+    }
+
+    .loginAccordion,
+    .loginAccordion-back {
+        width: 50%;
+    }
+
+    .accordion-confirm-button,
+    .accordion-back-button,
+    .accordion-finish-button {
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .accordion {
+        margin-top: 15px;
+    }
+
+    .accordion-header,
+    .accordion-header-first {
+        font-size: 11px;
+    }
+
+    .accordion-content,
+    .accordion-content-login {
+        font-size: 11px;
+    }
+
+    .accordion-confirm-button {
+        font-size: 11px;
+    }
+
+    .loginAccordion-back {
+        font-size: 11px;
+    }
 }

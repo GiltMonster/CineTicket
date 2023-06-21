@@ -11,3 +11,9 @@
     justify-content:center;
     flex-direction: row;
 }
+
+@media (max-width: 834px) {
+    .cadeirasEaccordion{
+        flex-direction: column;
+    }
+}
