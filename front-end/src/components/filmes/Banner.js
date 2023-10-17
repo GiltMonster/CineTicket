@@ -3,7 +3,7 @@ import "../../style/Banner.css";
 import { ContextFilm } from "../../context/filmeContext";
 import Loading from "../loading";
 import TrailerSinopse from "./TrailerSinopse";
-import { keyV4 } from "../../apiKeys";
+import { keyV4 } from "../../.env";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 

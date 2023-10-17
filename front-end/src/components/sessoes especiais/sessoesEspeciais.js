@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { keyV3 } from '../../apiKeys';
+import { keyV3 } from '../../.env';
 import Loading from '../loading';
 import '../../style/sessoesEspeciais.css';
 import { useParams } from 'react-router-dom';

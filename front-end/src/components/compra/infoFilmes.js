@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../style/infoFilme.css";
 import { useParams } from "react-router-dom";
-import { keyV3, keyV4 } from "../../apiKeys";
+import { keyV3, keyV4 } from "../../.env";
 import axios from "axios";
 import Loading from "../loading";
 
