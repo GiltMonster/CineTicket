@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CarrosselFilmes from "../components/home/carrosselFilmes";
 import axios from 'axios';
-import { keyV4 } from "../.env";
+import { keyV4 } from "/vercel/path0/front-end/src/pages";
 import Loading from "../components/loading";
 import CarrosselSessoesEspeciais from "../components/home/CarrosselSessoesEspeciais";
 import CartazSessaoGames from "../resource/img/CartazSessaoGames.png";

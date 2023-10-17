@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../style/FilmesPesquisados.css';
-import { keyV4 } from '../../.env';
+import { keyV4 } from '..//vercel/path0/front-end/src/pages';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import Loading from '../loading';

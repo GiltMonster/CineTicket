@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { keyV3 } from '../../.env';
+import { keyV3 } from '..//vercel/path0/front-end/src/pages';
 import Loading from '../loading';
 import '../../style/sessoesEspeciais.css';
 import { useParams } from 'react-router-dom';
