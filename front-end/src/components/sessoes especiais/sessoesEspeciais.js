@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { keyV3 } from '../../../../.env';
 import Loading from '../loading';
 import '../../style/sessoesEspeciais.css';
 import { useParams } from 'react-router-dom';
 
 export default function SessoesEspeciais() {
+
+  const keyV3 = process.env.REACT_APP_KEY_V3;
 
   const { listId, mesParametro } = useParams();
 

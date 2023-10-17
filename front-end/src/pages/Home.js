@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import CarrosselFilmes from "../components/home/carrosselFilmes";
 import axios from 'axios';
-import { keyV4 } from "../../../.env";
 import Loading from "../components/loading";
 import CarrosselSessoesEspeciais from "../components/home/CarrosselSessoesEspeciais";
 import CartazSessaoGames from "../resource/img/CartazSessaoGames.png";
@@ -12,6 +11,8 @@ import CartazSessaoBiografias from "../resource/img/CartazSessaoBiografias.png";
 import CartazSessaoClassicos from "../resource/img/CartazSessaoClassicos.png";
 
 export default function Home() {
+
+    const keyV4 = process.env.REACT_APP_KEY_V4;
 
     const [filmes, setFilmes] = useState()
 

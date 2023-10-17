@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "../../style/infoFilme.css";
 import { useParams } from "react-router-dom";
-import { keyV3, keyV4 } from "../../../../.env";
 import axios from "axios";
 import Loading from "../loading";
 
 function InfoFilme({setInfoSection, setFilmeCompra}) {
+  
+  const keyV3 = process.env.REACT_APP_KEY_V3;
+  const keyV4 = process.env.REACT_APP_KEY_V4;
+
   let { filmeId } = useParams();
   let { room } = useParams();
   let { time } = useParams();

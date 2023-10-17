@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import '../../style/FilmesPesquisados.css';
-import { keyV4 } from '../../../../.env';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import Loading from '../loading';
 import filmeReserva from "../../resource/img/filmeReserva.png"
 
 export default function FilmesPesquisados() {
+
+    const keyV4 = process.env.REACT_APP_KEY_V4;
+
     const [pesquisa, setPesquisa] = useState();
     const [filme, setFilme] = useState([]);
     const [loading, setLoading] = useState(true);
